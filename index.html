@@ -1,0 +1,2949 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>面试记忆本</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#faf8f4;--white:#fff;--card:#fff;
+  --sand:#f3efe8;--sand2:#ebe6dc;--sand3:#ddd7ca;
+  --ink:#2c2a25;--ink2:#5c584e;--ink3:#8a857a;--ink4:#b5b0a5;
+  --accent:#c06838;--accent2:#d4845a;--accent-bg:rgba(192,104,56,.07);
+  --green:#4a8c6f;--green-bg:rgba(74,140,111,.08);
+  --yellow:#b8860b;--yellow-bg:rgba(184,134,11,.08);
+  --red:#b04a3a;--red-bg:rgba(176,74,58,.08);
+  --blue:#4a6fa5;--blue-bg:rgba(74,111,165,.08);
+  --r:10px;--shadow:0 1px 4px rgba(0,0,0,.06);
+}
+body{background:var(--bg);color:var(--ink);font-family:'Noto Sans SC','Hiragino Sans GB',sans-serif;min-height:100vh;line-height:1.6}
+
+/* === HEADER === */
+.hd{padding:20px 32px;display:flex;align-items:center;gap:14px;border-bottom:1px solid var(--sand2);background:var(--white);position:sticky;top:0;z-index:100}
+.hd-icon{font-size:24px}
+.hd-title{font-family:'Noto Serif SC',serif;font-size:20px;font-weight:700;color:var(--ink)}
+.hd-sub{font-size:12px;color:var(--ink3);margin-left:4px}
+.hd-stats{margin-left:auto;display:flex;gap:10px;flex-wrap:wrap}
+.hd-b{display:flex;align-items:center;gap:5px;padding:4px 12px;border-radius:20px;font-size:12px;color:var(--ink2);background:var(--sand)}
+.hd-dot{width:7px;height:7px;border-radius:50%}
+
+/* === NAV === */
+.nav{display:flex;gap:2px;padding:12px 32px;background:var(--white);border-bottom:1px solid var(--sand2);overflow-x:auto}
+.nav::-webkit-scrollbar{display:none}
+.nav-t{padding:8px 18px;border-radius:8px;font-size:13px;cursor:pointer;transition:.2s;color:var(--ink3);white-space:nowrap;font-weight:500}
+.nav-t:hover{color:var(--ink);background:var(--sand)}
+.nav-t.on{background:var(--accent);color:#fff}
+
+/* === MAIN === */
+.main{max-width:860px;margin:0 auto;padding:24px 32px 60px}
+.main.ai-main{max-width:1160px}
+.sec-t{font-family:'Noto Serif SC',serif;font-size:18px;font-weight:700;margin-bottom:16px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.sec-desc{font-size:13px;color:var(--ink3);margin-bottom:20px;line-height:1.7}
+.tab{display:none}.tab.on{display:block}
+
+/* === GUIDE === */
+.guide-steps{display:flex;flex-direction:column;gap:16px;margin-bottom:24px}
+.g-step{background:var(--white);border:1px solid var(--sand2);border-radius:var(--r);padding:20px 24px;position:relative;box-shadow:var(--shadow)}
+.g-step::before{content:attr(data-step);position:absolute;top:-10px;left:20px;background:var(--accent);color:#fff;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
+.g-step h4{font-size:14px;font-weight:600;margin-bottom:4px;color:var(--ink)}
+.g-step p{font-size:13px;color:var(--ink2);line-height:1.7}
+.g-tip{background:var(--accent-bg);border-left:3px solid var(--accent);border-radius:0 var(--r) var(--r) 0;padding:14px 18px;margin-top:16px;font-size:13px;color:var(--ink2);line-height:1.7}
+.g-tip strong{color:var(--accent)}
+
+/* === IMPORT === */
+.import-area{background:var(--white);border:1px solid var(--sand2);border-radius:var(--r);padding:24px;margin-bottom:20px;box-shadow:var(--shadow)}
+.import-area h3{font-size:15px;font-weight:600;margin-bottom:12px}
+.imp-row{display:flex;flex-direction:column;gap:10px;margin-bottom:14px}
+.imp-row label{font-size:13px;font-weight:500;color:var(--ink2)}
+.imp-input{width:100%;padding:10px 14px;border:1px solid var(--sand2);border-radius:8px;font-size:14px;font-family:inherit;color:var(--ink);background:var(--bg);outline:none;transition:border .2s}
+.imp-input:focus{border-color:var(--accent)}
+textarea.imp-input{min-height:120px;resize:vertical;line-height:1.7}
+.imp-row-h{display:flex;gap:10px}
+.imp-row-h>*{flex:1}
+.imp-sel{padding:10px 14px;border:1px solid var(--sand2);border-radius:8px;font-size:13px;font-family:inherit;color:var(--ink);background:var(--bg);cursor:pointer;outline:none}
+.imp-sel:focus{border-color:var(--accent)}
+.kw-input-wrap{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.kw-input-wrap input{flex:1;min-width:120px}
+.btn{padding:10px 22px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;border:none;font-family:inherit;transition:.2s}
+.btn-p{background:var(--accent);color:#fff}.btn-p:hover{background:var(--accent2)}
+.btn-s{background:var(--sand);color:var(--ink2);border:1px solid var(--sand2)}.btn-s:hover{background:var(--sand2)}
+.btn-d{background:transparent;color:var(--red);border:1px solid var(--red-bg)}.btn-d:hover{background:var(--red-bg)}
+.btn-row{display:flex;gap:8px;flex-wrap:wrap}
+.tip-btn{position:relative}
+.tip-btn::before{content:'';position:absolute;left:22px;bottom:calc(100% + 6px);border:6px solid transparent;border-top-color:var(--ink);opacity:0;transform:translateY(4px);transition:opacity .2s ease,transform .2s ease;pointer-events:none}
+.tip-btn::after{content:attr(data-tip);position:absolute;left:0;bottom:calc(100% + 16px);min-width:220px;max-width:280px;padding:10px 12px;border-radius:10px;background:var(--ink);color:#fff;font-size:12px;font-weight:500;line-height:1.65;box-shadow:0 10px 24px rgba(0,0,0,.14);opacity:0;transform:translateY(6px);transition:opacity .2s ease,transform .2s ease;pointer-events:none;white-space:normal;text-align:left;z-index:30}
+.tip-btn:hover::before,.tip-btn:hover::after,.tip-btn:focus-visible::before,.tip-btn:focus-visible::after{opacity:1;transform:translateY(0)}
+
+/* === BATCH IMPORT === */
+.batch-area{background:var(--sand);border:2px dashed var(--sand3);border-radius:var(--r);padding:28px;text-align:center;margin-bottom:16px;cursor:pointer;transition:.2s}
+.batch-area:hover{border-color:var(--accent);background:var(--accent-bg)}
+.batch-area p{font-size:13px;color:var(--ink3);margin-top:6px}
+.batch-hint{font-size:12px;color:var(--ink4);margin-bottom:16px;line-height:1.6;background:var(--sand);padding:12px 16px;border-radius:8px}
+
+/* === AI WORKBENCH === */
+.ai-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:16px}
+.ai-stage{max-width:1120px;margin:0 auto}
+.ai-stage .sec-desc{max-width:760px}
+.ai-hero{max-width:760px;margin-bottom:14px}
+.ai-kicker{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:999px;background:var(--accent-bg);color:var(--accent);font-size:11px;font-weight:700;letter-spacing:.02em;margin-bottom:10px}
+.ai-hero .sec-t{margin-bottom:8px;font-size:17px}
+.ai-hero .sec-desc{margin-bottom:0;font-size:13px;line-height:1.8;color:var(--ink3)}
+.ai-note{font-size:12px;color:var(--ink4);line-height:1.7;background:var(--sand);padding:12px 14px;border-radius:8px;margin-top:14px}
+.ai-status{margin-top:12px;padding:12px 14px;border-radius:8px;font-size:12px;line-height:1.7;background:var(--sand);color:var(--ink2);display:none}
+.ai-status.show{display:block}
+.ai-status.ok{background:var(--green-bg);color:var(--green)}
+.ai-status.err{background:var(--red-bg);color:var(--red)}
+.ai-flow{display:flex;gap:12px;flex-wrap:wrap;margin:12px 0 22px}
+.ai-step{flex:1;min-width:180px;background:var(--white);border:1px solid var(--sand2);border-radius:12px;padding:14px 16px;box-shadow:var(--shadow)}
+.ai-step.active{border-color:rgba(192,104,56,.28);box-shadow:0 8px 24px rgba(192,104,56,.08)}
+.ai-step.done{background:linear-gradient(180deg,#fff,rgba(74,140,111,.04));border-color:rgba(74,140,111,.24)}
+.ai-step-no{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:999px;background:var(--accent-bg);color:var(--accent);font-size:12px;font-weight:700;margin-bottom:10px}
+.ai-step.done .ai-step-no{background:var(--green-bg);color:var(--green)}
+.ai-step h4{font-size:14px;margin-bottom:4px}
+.ai-step p{font-size:12px;line-height:1.7;color:var(--ink4)}
+.ai-step-tag{display:inline-flex;align-items:center;gap:6px;margin-top:10px;padding:4px 10px;border-radius:999px;font-size:11px;background:var(--sand);color:var(--ink3)}
+.ai-step.done .ai-step-tag{background:var(--green-bg);color:var(--green)}
+.ai-step.active .ai-step-tag{background:var(--accent-bg);color:var(--accent)}
+.ai-panel{padding:26px 28px}
+.ai-config-card{margin-bottom:18px}
+.ai-config-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:12px}
+.ai-shell{display:grid;grid-template-columns:minmax(0,1.16fr) minmax(360px,430px);gap:22px;align-items:start}
+.ai-col{display:flex;flex-direction:column;gap:18px}
+.ai-result-card{position:sticky;top:22px}
+.ai-card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:14px}
+.ai-card-title h3{margin-bottom:4px}
+.ai-card-sub{font-size:12px;color:var(--ink4);line-height:1.7}
+.ai-chip-row{display:flex;gap:8px;flex-wrap:wrap}
+.ai-chip{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:999px;font-size:11px;background:var(--sand);color:var(--ink3);white-space:nowrap}
+.ai-chip strong{font-weight:700;color:var(--ink2)}
+.ai-result-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:12px}
+.ai-result-meta{font-size:12px;color:var(--ink4);line-height:1.7}
+.ai-empty-card{background:linear-gradient(180deg,var(--sand),rgba(255,255,255,.88));border:1px dashed var(--sand3);border-radius:12px;padding:20px;min-height:320px;display:flex;flex-direction:column;justify-content:center}
+.ai-empty-card h4{font-size:14px;margin-bottom:8px}
+.ai-empty-card p{font-size:12px;color:var(--ink4);line-height:1.7;margin-bottom:10px}
+.ai-empty-list{display:flex;flex-direction:column;gap:8px}
+.ai-empty-item{display:flex;gap:8px;align-items:flex-start;font-size:12px;color:var(--ink3);line-height:1.7}
+.ai-empty-item span{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:999px;background:var(--white);border:1px solid var(--sand2);font-size:11px;color:var(--accent);flex-shrink:0;margin-top:1px}
+.ai-empty-hero{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.ai-empty-ico{width:36px;height:36px;border-radius:12px;background:var(--white);border:1px solid var(--sand2);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.ai-preview-wrap{display:flex;flex-direction:column;gap:10px;min-height:360px}
+.ai-files{margin-top:8px;font-size:12px;color:var(--ink4);line-height:1.7}
+.ai-preview{display:flex;flex-direction:column;gap:10px}
+.ai-item{background:var(--white);border:1px solid var(--sand2);border-radius:var(--r);padding:16px;box-shadow:var(--shadow)}
+.ai-item-h{display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap}
+.ai-badge{padding:3px 10px;border-radius:999px;font-size:11px;background:var(--blue-bg);color:var(--blue)}
+.ai-conf{font-size:11px;color:var(--ink4)}
+.ai-item-q{font-size:14px;font-weight:600;margin-bottom:8px}
+.ai-item-a{font-size:13px;line-height:1.8;color:var(--ink2);white-space:pre-wrap;margin-bottom:10px}
+.ai-item-ft{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.ai-empty{font-size:13px;color:var(--ink4);text-align:center;padding:36px 18px}
+.ai-cta{min-width:140px}
+.ai-secondary{background:var(--white);color:var(--accent);border:1px solid rgba(192,104,56,.22)}
+.ai-secondary:hover{background:var(--accent-bg);border-color:rgba(192,104,56,.35)}
+.ai-quiet{background:transparent;color:var(--ink3);border:1px solid transparent}
+.ai-quiet:hover{background:var(--sand)}
+.ai-actions-split{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.ai-actions-split .btn-p{padding:12px 24px}
+.ai-input-note{font-size:12px;color:var(--ink4);line-height:1.7;background:var(--sand);border-radius:10px;padding:12px 14px}
+.ai-result-panel{display:flex;flex-direction:column;gap:12px}
+.ai-mini-divider{height:1px;background:var(--sand2)}
+.local-map-preview{display:flex;flex-direction:column;gap:10px;margin-top:12px}
+.local-map-card{background:var(--sand);border:1px solid var(--sand2);border-radius:8px;padding:12px 14px}
+.local-map-title{font-size:12px;font-weight:600;color:var(--ink2);margin-bottom:8px}
+.local-map-summary{font-size:12px;line-height:1.8;color:var(--ink3)}
+.local-map-chips{display:flex;gap:6px;flex-wrap:wrap}
+.local-map-list{display:flex;flex-direction:column;gap:8px}
+.local-map-item{background:var(--white);border:1px solid var(--sand2);border-radius:8px;padding:10px 12px}
+.local-map-item-q{font-size:12px;font-weight:600;line-height:1.7;color:var(--ink2);margin-top:6px}
+.local-map-item-a{font-size:12px;line-height:1.7;color:var(--ink4);margin-top:4px;white-space:pre-wrap}
+
+/* === Q&A LIST === */
+.filters{display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap}
+.f-chip{padding:6px 14px;border-radius:20px;font-size:12px;cursor:pointer;background:var(--sand);color:var(--ink3);border:1px solid transparent;transition:.2s}
+.f-chip:hover,.f-chip.on{color:var(--ink);background:var(--white);border-color:var(--sand3)}
+.qa{background:var(--white);border:1px solid var(--sand2);border-radius:var(--r);margin-bottom:8px;box-shadow:var(--shadow);transition:.2s}
+.qa:hover{box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.qa-h{display:flex;align-items:center;gap:10px;padding:14px 18px;cursor:pointer;user-select:none}
+.qa-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.qa-dot.red{background:var(--red)}.qa-dot.yellow{background:var(--yellow)}.qa-dot.green{background:var(--green)}
+.qa-q{flex:1;font-size:14px;font-weight:500}
+.qa-proj{padding:3px 10px;border-radius:12px;font-size:11px;background:var(--sand);color:var(--ink3)}
+.qa-arr{color:var(--ink4);font-size:14px;transition:transform .3s}
+.qa.open .qa-arr{transform:rotate(180deg)}
+.qa-b{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.qa.open .qa-b{max-height:4000px}
+.qa-kw{padding:4px 18px 8px;display:flex;gap:5px;flex-wrap:wrap}
+.kw{padding:3px 9px;background:var(--accent-bg);border-radius:6px;font-size:11px;color:var(--accent)}
+.qa-ans{padding:0 18px 14px;font-size:13px;line-height:1.85;color:var(--ink2);white-space:pre-wrap}
+.qa-ft{display:flex;gap:6px;padding:4px 18px 14px;flex-wrap:wrap;align-items:center}
+.qa-meta{font-size:11px;color:var(--ink4);margin-right:4px}
+.lv-btn{padding:5px 12px;border-radius:6px;font-size:11px;cursor:pointer;border:1px solid var(--sand2);background:var(--white);color:var(--ink3);font-family:inherit;transition:.2s}
+.lv-btn:hover{border-color:var(--ink4)}
+.lv-btn.ar{border-color:var(--red);color:var(--red);background:var(--red-bg)}
+.lv-btn.ay{border-color:var(--yellow);color:var(--yellow);background:var(--yellow-bg)}
+.lv-btn.ag{border-color:var(--green);color:var(--green);background:var(--green-bg)}
+.del-link{margin-left:auto;font-size:11px;color:var(--ink4);cursor:pointer;text-decoration:underline}
+.del-link:hover{color:var(--red)}
+
+/* === FLASHCARD === */
+.fc-wrap{display:flex;flex-direction:column;align-items:center;padding-top:20px}
+.fc-filters{width:100%;align-self:flex-start;display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-start;margin-bottom:12px}
+.fc-note{width:100%;max-width:780px;font-size:12px;color:var(--ink3);margin-bottom:10px;text-align:left}
+.fc-prog{width:100%;max-width:780px;display:flex;align-items:center;gap:10px;margin-bottom:16px;font-size:12px;color:var(--ink3)}
+.prog-bar{flex:1;height:4px;background:var(--sand);border-radius:4px;overflow:hidden}
+.prog-fill{height:100%;background:var(--accent);border-radius:4px;transition:width .5s}
+.fc{width:100%;max-width:780px;min-height:450px;perspective:1000px;cursor:pointer;margin-bottom:20px}
+.fc-in{width:100%;min-height:450px;position:relative;transition:transform .6s cubic-bezier(.4,0,.2,1);transform-style:preserve-3d}
+.fc.flip .fc-in{transform:rotateY(180deg)}
+.fc-f,.fc-bk{position:absolute;inset:0;backface-visibility:hidden;border-radius:var(--r);padding:32px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;box-shadow:var(--shadow)}
+.fc-f{background:var(--white);border:1px solid var(--sand2)}
+.fc-bk{background:var(--white);border:1px solid var(--sand2);transform:rotateY(180deg);text-align:left;align-items:flex-start;justify-content:flex-start;overflow-y:auto}
+.fc-lbl{font-size:11px;color:var(--accent);text-transform:uppercase;letter-spacing:2px;margin-bottom:14px;font-weight:600}
+.fc-qtxt{font-family:'Noto Serif SC',serif;font-size:19px;font-weight:700;line-height:1.6}
+.fc-hint{margin-top:18px;font-size:12px;color:var(--ink4)}
+.fc-atxt{font-size:13px;line-height:1.85;color:var(--ink2);white-space:pre-wrap}
+.fc-proj{font-size:11px;color:var(--green);margin-bottom:6px;padding:3px 10px;background:var(--green-bg);border-radius:6px}
+.fc-acts{display:flex;gap:10px;width:100%;max-width:780px}
+.fc-btn{flex:1;padding:14px 10px;border-radius:var(--r);font-size:13px;font-weight:600;cursor:pointer;border:1px solid var(--sand2);background:var(--white);color:var(--ink);font-family:inherit;transition:.2s;text-align:center}
+.fc-btn:hover{transform:translateY(-1px);box-shadow:0 3px 10px rgba(0,0,0,.06)}
+.fc-btn.br:hover{border-color:var(--red);background:var(--red-bg)}
+.fc-btn.by:hover{border-color:var(--yellow);background:var(--yellow-bg)}
+.fc-btn.bg:hover{border-color:var(--green);background:var(--green-bg)}
+.fc-btn small{display:block;font-size:10px;font-weight:400;color:var(--ink4);margin-top:2px}
+
+/* === VOICE === */
+.vc-wrap{display:flex;flex-direction:column;align-items:center;padding-top:20px}
+.vc-card{width:100%;max-width:560px;background:var(--white);border:1px solid var(--sand2);border-radius:var(--r);padding:32px;text-align:center;margin-bottom:20px;box-shadow:var(--shadow)}
+.vc-proj{display:inline-block;padding:4px 12px;border-radius:12px;font-size:11px;margin-bottom:8px;background:var(--blue-bg);color:var(--blue)}
+.vc-qtxt{font-family:'Noto Serif SC',serif;font-size:20px;font-weight:700;line-height:1.5;margin-bottom:16px}
+.timer{font-size:40px;font-weight:300;color:var(--accent);font-variant-numeric:tabular-nums;margin-bottom:4px}
+.timer-l{font-size:11px;color:var(--ink4)}
+.vc-ctrls{display:flex;gap:12px;margin-bottom:20px}
+.vc-btn{width:50px;height:50px;border-radius:50%;border:1.5px solid var(--sand2);background:var(--white);color:var(--ink);font-size:18px;cursor:pointer;transition:.2s;display:flex;align-items:center;justify-content:center}
+.vc-btn:hover{border-color:var(--accent);color:var(--accent)}
+.vc-btn.rec{border-color:var(--red);color:var(--red);animation:pulse 1.5s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(176,74,58,.2)}50%{box-shadow:0 0 0 10px rgba(176,74,58,0)}}
+.sr{width:100%;max-width:560px;background:var(--white);border:1px solid var(--sand2);border-radius:var(--r);padding:20px;box-shadow:var(--shadow)}
+.sr h3{font-size:14px;font-weight:600;margin-bottom:12px;text-align:center}
+.stars{display:flex;justify-content:center;gap:6px;margin-bottom:14px}
+.star{width:34px;height:34px;border-radius:8px;background:var(--sand);border:1px solid var(--sand2);cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:.2s;color:var(--ink4)}
+.star:hover,.star.on{background:var(--yellow-bg);border-color:var(--yellow);color:var(--yellow);transform:scale(1.1)}
+.rev-btn{width:100%;padding:10px;border-radius:8px;background:var(--sand);border:1px solid var(--sand2);color:var(--ink3);font-size:13px;cursor:pointer;font-family:inherit;transition:.2s}
+.rev-btn:hover{border-color:var(--accent);color:var(--ink)}
+.rev-ans{margin-top:12px;padding:16px;background:var(--sand);border-radius:8px;font-size:13px;line-height:1.85;color:var(--ink2);display:none;white-space:pre-wrap;max-height:280px;overflow-y:auto}
+.rev-ans.show{display:block}
+
+/* === DAILY === */
+.daily{max-width:600px;margin:0 auto}
+.tb{display:flex;gap:14px;margin-bottom:6px;position:relative}
+.tb::before{content:'';position:absolute;left:52px;top:40px;bottom:-6px;width:1.5px;background:var(--sand2)}
+.tb:last-child::before{display:none}
+.tb-time{width:42px;padding-top:14px;text-align:right;font-size:12px;color:var(--ink4);font-weight:500;flex-shrink:0}
+.tb-dot{width:18px;display:flex;justify-content:center;padding-top:16px;flex-shrink:0}
+.tb-dot::after{content:'';width:8px;height:8px;border-radius:50%;background:var(--accent);border:2px solid var(--bg);box-shadow:0 0 0 1.5px var(--accent)}
+.tb-c{flex:1;background:var(--white);border:1px solid var(--sand2);border-radius:var(--r);padding:16px;box-shadow:var(--shadow)}
+.tb-c h4{font-size:14px;font-weight:600;margin-bottom:3px}
+.tb-c>p{font-size:12px;color:var(--ink3);margin-bottom:8px}
+.tl{display:flex;flex-direction:column;gap:5px}
+.ti{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--ink2)}
+.tc{width:16px;height:16px;border-radius:4px;border:1.5px solid var(--ink4);cursor:pointer;transition:.2s;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:transparent;color:transparent;font-size:9px}
+.tc.ck{border-color:var(--green);background:var(--green);color:#fff}
+.ti.dn{text-decoration:line-through;color:var(--ink4)}
+
+/* === STATS === */
+.st-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:20px}
+.st-card{background:var(--white);border:1px solid var(--sand2);border-radius:var(--r);padding:18px;text-align:center;box-shadow:var(--shadow)}
+.st-num{font-family:'Noto Serif SC',serif;font-size:30px;font-weight:900;margin-bottom:2px}
+.st-lbl{font-size:11px;color:var(--ink4);letter-spacing:.5px}
+.ms-chart{background:var(--white);border:1px solid var(--sand2);border-radius:var(--r);padding:20px;margin-bottom:14px;box-shadow:var(--shadow)}
+.ms-chart h3{font-size:14px;font-weight:600;margin-bottom:14px}
+.ms-row{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.ms-lbl{width:72px;font-size:12px;color:var(--ink3)}
+.ms-bar{flex:1;height:18px;background:var(--sand);border-radius:9px;overflow:hidden}
+.ms-fill{height:100%;border-radius:9px;transition:width 1s;display:flex;align-items:center;justify-content:flex-end;padding-right:7px;font-size:10px;font-weight:600;color:#fff;min-width:20px}
+.ms-fill.r{background:var(--red)}.ms-fill.y{background:var(--yellow)}.ms-fill.g{background:var(--green)}
+
+/* === MODAL === */
+.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.3);z-index:200;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .25s}
+.modal-bg.show{opacity:1;pointer-events:all}
+.modal{background:var(--white);border-radius:14px;padding:28px;max-width:600px;width:100%;max-height:85vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.15)}
+.modal h2{font-family:'Noto Serif SC',serif;font-size:18px;margin-bottom:16px}
+.modal-close{float:right;font-size:20px;cursor:pointer;color:var(--ink4);background:none;border:none;line-height:1}
+
+.empty{text-align:center;padding:48px 20px;color:var(--ink4)}.empty .emo{font-size:36px;margin-bottom:10px}
+.fade{animation:fadeIn .35s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+
+@media(max-width:640px){
+  .hd{padding:14px 16px}.nav{padding:8px 16px}.main{padding:16px 16px 40px}
+  .st-grid{grid-template-columns:1fr 1fr}.fc-qtxt{font-size:16px}.vc-qtxt{font-size:17px}
+  .imp-row-h{flex-direction:column}
+  .ai-grid{grid-template-columns:1fr}
+  .ai-stage{max-width:none}
+  .ai-config-grid{grid-template-columns:1fr}
+  .ai-shell{grid-template-columns:1fr}
+  .ai-result-card{position:static}
+  .ai-panel{padding:22px}
+  .ai-empty-card{min-height:0}
+  .ai-preview-wrap{min-height:0}
+  .ai-hero{max-width:none}
+  .fc,.fc-in{min-height:360px}
+}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-thumb{background:var(--sand3);border-radius:2px}
+</style>
+</head>
+<body>
+
+<div class="hd">
+  <span class="hd-icon">📖</span>
+  <span class="hd-title">面试记忆本</span>
+  <span class="hd-sub">— 用对方法，记得更牢</span>
+  <div class="hd-stats" id="hdStats"></div>
+</div>
+<div class="nav" id="nav"></div>
+<div class="main" id="main"></div>
+
+<!-- EDIT QUESTION MODAL -->
+<div class="modal-bg" id="editModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeEditModal()">&times;</button>
+    <h2>编辑问答</h2>
+    <div class="imp-row">
+      <label>面试问题</label>
+      <input class="imp-input" id="editQ" placeholder="输入面试官会问的问题…">
+    </div>
+    <div class="imp-row">
+      <label>参考答案</label>
+      <textarea class="imp-input" id="editA" rows="8" placeholder="写下你准备的回答…"></textarea>
+    </div>
+    <div class="imp-row-h">
+      <div class="imp-row">
+        <label>关键词（用逗号分隔）</label>
+        <input class="imp-input" id="editKw" placeholder="如：STAR法则,数据驱动,ROI">
+      </div>
+      <div class="imp-row">
+        <label>所属项目</label>
+        <select class="imp-sel" id="editProj" style="width:100%"></select>
+      </div>
+    </div>
+    <div class="imp-row">
+      <label>掌握程度</label>
+      <select class="imp-sel" id="editLv">
+        <option value="red">🔴 不熟</option>
+        <option value="yellow">🟡 大概</option>
+        <option value="green">🟢 熟练</option>
+      </select>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-p" onclick="saveEdit()">保存修改</button>
+      <button class="btn btn-s" onclick="closeEditModal()">取消</button>
+    </div>
+  </div>
+</div>
+
+<script>
+window.BUNDLED_IMPORTS = {};
+</script>
+<script>
+// ============ DATA ============
+const SK = 'interview_notebook_public_v2';
+const SCHEMA_VERSION = 4;
+
+const defaultProjects = [
+  {id:'default', name:'默认分组'},
+];
+
+const presetQuestions = [];
+
+let state = load();
+
+function createDefaultState(){
+  return {
+    version:SCHEMA_VERSION,
+    projects:[...defaultProjects],
+    questions:presetQuestions.map(q=>normalizeQuestion({...q})),
+    filter:'all',
+    projFilter:'all',
+    flashProjFilter:'all',
+    log:[],
+    llmConfig:{baseUrl:'',apiKey:'',model:''},
+    llmConfigSecondary:{baseUrl:'',apiKey:'',model:''},
+    aiDraft:{summary:'',items:[],updatedAt:null,sourceLabel:''},
+    interviewLab:createDefaultInterviewLab()
+  };
+}
+
+function createDefaultInterviewLab(){
+  return {
+    mode:'single',
+    projectId:'default',
+    maxQuestions:10,
+    prompts:{
+      interviewer:'你是严格但专业的面试官。请围绕候选人的项目经历进行真实、有压力感的深挖提问，问题要具体、尖锐、避免泛泛而谈，并尽量覆盖项目目标、方案、指标、取舍、风险、落地和复盘。',
+      candidate:'你是正在准备 AI 产品经理面试的候选人。请基于给定项目背景，用第一人称给出可信、结构清晰、保留关键指标与归因边界的回答，避免空话和自夸。',
+      formatter:'你是面试整理助手。请把完整模拟对话整理成结构化面试问答，按项目归类，提炼关键词，并保留问题来源与回答中的关键数据点。'
+    },
+    turns:[],
+    askedCount:0,
+    status:'idle',
+    paused:false,
+    complete:false,
+    currentQuestion:'',
+    currentQuestionKeywords:[],
+    currentUserAnswer:'',
+    contextText:'',
+    notesText:'',
+    cachedSourceText:'',
+    cachedUnreadable:[],
+    lastPreviewAt:null,
+    markdown:'',
+    lastSavedFilename:'',
+    sourceFiles:[],
+    notice:''
+  };
+}
+
+function normalizeLLMConfig(cfg){
+  return {
+    baseUrl:typeof cfg?.baseUrl==='string'?cfg.baseUrl:'',
+    apiKey:typeof cfg?.apiKey==='string'?cfg.apiKey:'',
+    model:typeof cfg?.model==='string'?cfg.model:''
+  };
+}
+
+function normalizeAIDraft(draft){
+  const items=Array.isArray(draft?.items)?draft.items.map((item,idx)=>({
+    id:item.id || `ai_${Date.now()}_${idx}_${Math.random().toString(36).slice(2,7)}`,
+    projectId:item.projectId || 'default',
+    projectName:item.projectName || '',
+    question:item.question || '',
+    answer:item.answer || '',
+    keywords:Array.isArray(item.keywords)?item.keywords.filter(Boolean):[],
+    source:item.source || 'mixed',
+    confidence:Number.isFinite(item.confidence)?item.confidence:null
+  })).filter(item=>item.question && item.answer):[];
+  return {
+    summary:typeof draft?.summary==='string'?draft.summary:'',
+    items,
+    updatedAt:draft?.updatedAt || null,
+    sourceLabel:typeof draft?.sourceLabel==='string'?draft.sourceLabel:''
+  };
+}
+
+function normalizeInterviewLab(lab){
+  const base=createDefaultInterviewLab();
+  const prompts=lab&&typeof lab.prompts==='object'?lab.prompts:{};
+  return {
+    mode:['single','dual','mixed'].includes(lab?.mode)?lab.mode:base.mode,
+    projectId:typeof lab?.projectId==='string'?lab.projectId:base.projectId,
+    maxQuestions:10,
+    prompts:{
+      interviewer:typeof prompts.interviewer==='string'&&prompts.interviewer.trim()?prompts.interviewer:base.prompts.interviewer,
+      candidate:typeof prompts.candidate==='string'&&prompts.candidate.trim()?prompts.candidate:base.prompts.candidate,
+      formatter:typeof prompts.formatter==='string'&&prompts.formatter.trim()?prompts.formatter:base.prompts.formatter
+    },
+    turns:Array.isArray(lab?.turns)?lab.turns.map((turn,idx)=>({
+      id:turn.id || `turn_${idx}_${Math.random().toString(36).slice(2,7)}`,
+      question:typeof turn.question==='string'?turn.question:'',
+      answer:typeof turn.answer==='string'?turn.answer:'',
+      questionSource:typeof turn.questionSource==='string'?turn.questionSource:'interviewer',
+      answerSource:typeof turn.answerSource==='string'?turn.answerSource:'candidate',
+      projectId:typeof turn.projectId==='string'?turn.projectId:'default',
+      keywords:Array.isArray(turn.keywords)?turn.keywords.map(x=>String(x)).filter(Boolean).slice(0,6):[],
+      createdAt:turn.createdAt || new Date().toISOString()
+    })).filter(turn=>turn.question):[],
+    askedCount:Number.isFinite(lab?.askedCount)?Math.min(10,Math.max(0,lab.askedCount)):0,
+    status:['idle','running','await_user_answer','paused','complete'].includes(lab?.status)?lab.status:base.status,
+    paused:!!lab?.paused,
+    complete:!!lab?.complete,
+    currentQuestion:typeof lab?.currentQuestion==='string'?lab.currentQuestion:'',
+    currentQuestionKeywords:Array.isArray(lab?.currentQuestionKeywords)?lab.currentQuestionKeywords.map(x=>String(x)).filter(Boolean).slice(0,6):[],
+    currentUserAnswer:typeof lab?.currentUserAnswer==='string'?lab.currentUserAnswer:'',
+    contextText:typeof lab?.contextText==='string'?lab.contextText:'',
+    notesText:typeof lab?.notesText==='string'?lab.notesText:'',
+    cachedSourceText:typeof lab?.cachedSourceText==='string'?lab.cachedSourceText:'',
+    cachedUnreadable:Array.isArray(lab?.cachedUnreadable)?lab.cachedUnreadable.map(x=>String(x)).filter(Boolean):[],
+    lastPreviewAt:lab?.lastPreviewAt || null,
+    markdown:typeof lab?.markdown==='string'?lab.markdown:'',
+    lastSavedFilename:typeof lab?.lastSavedFilename==='string'?lab.lastSavedFilename:'',
+    sourceFiles:Array.isArray(lab?.sourceFiles)?lab.sourceFiles.map(x=>String(x)).filter(Boolean):[],
+    notice:typeof lab?.notice==='string'?lab.notice:''
+  };
+}
+
+function clamp(n,min,max){return Math.min(max,Math.max(min,n))}
+function addMsISO(base,ms){return new Date(base+ms).toISOString()}
+function addDaysISO(base,days){const d=new Date(base);d.setDate(d.getDate()+days);return d.toISOString()}
+function ladderNext(prev,steps){for(const step of steps){if(step>prev)return step}return steps[steps.length-1]}
+
+function inferSchedule(q){
+  const now=Date.now();
+  const practiced=Number.isFinite(q.practiced)?q.practiced:0;
+  const lastTs=q.lastPracticed?new Date(q.lastPracticed).getTime():now;
+  const level=['red','yellow','green'].includes(q.level)?q.level:'red';
+  const intervalDays=Number.isFinite(q.intervalDays)?q.intervalDays:(practiced===0?0:(level==='green'?3:level==='yellow'?1:0));
+  const streak=Number.isFinite(q.streak)?q.streak:(level==='green'?Math.min(practiced||1,3):level==='yellow'?(practiced?1:0):0);
+  const lapseCount=Number.isFinite(q.lapseCount)?q.lapseCount:0;
+  const lastResult=typeof q.lastResult==='string'?q.lastResult:null;
+  let nextReviewAt=q.nextReviewAt || null;
+  if(!nextReviewAt){
+    if(practiced===0 || level==='red')nextReviewAt=new Date(now).toISOString();
+    else nextReviewAt=addDaysISO(lastTs,intervalDays);
+  }
+  return {intervalDays,streak,lapseCount,lastResult,nextReviewAt};
+}
+
+function normalizeQuestion(q){
+  const schedule=inferSchedule(q);
+  return {
+    id:q.id ?? Date.now()+Math.random(),
+    project:q.project || 'default',
+    q:q.q || '',
+    answer:q.answer || '（暂未填写答案）',
+    keywords:Array.isArray(q.keywords)?q.keywords.filter(Boolean):[],
+    level:['red','yellow','green'].includes(q.level)?q.level:'red',
+    practiced:Number.isFinite(q.practiced)?q.practiced:0,
+    lastPracticed:q.lastPracticed || null,
+    score:Number.isFinite(q.score)?q.score:0,
+    intervalDays:schedule.intervalDays,
+    streak:schedule.streak,
+    lapseCount:schedule.lapseCount,
+    lastResult:schedule.lastResult,
+    nextReviewAt:schedule.nextReviewAt,
+  };
+}
+
+function migrateState(raw){
+  const base=createDefaultState();
+  if(!raw||!raw.projects||!raw.questions)return base;
+  return {
+    version:SCHEMA_VERSION,
+    projects:Array.isArray(raw.projects)&&raw.projects.length?raw.projects:base.projects,
+    questions:Array.isArray(raw.questions)?raw.questions.map(normalizeQuestion):base.questions,
+    filter:['all','red','yellow','green'].includes(raw.filter)?raw.filter:'all',
+    projFilter:raw.projFilter || 'all',
+    flashProjFilter:raw.flashProjFilter || 'all',
+    log:Array.isArray(raw.log)?raw.log:[],
+    llmConfig:normalizeLLMConfig(raw.llmConfig),
+    llmConfigSecondary:normalizeLLMConfig(raw.llmConfigSecondary),
+    aiDraft:normalizeAIDraft(raw.aiDraft),
+    interviewLab:normalizeInterviewLab(raw.interviewLab)
+  };
+}
+
+function load(){
+  try{
+    const s=localStorage.getItem(SK);
+    if(s)return migrateState(JSON.parse(s));
+  }catch(e){}
+  return createDefaultState();
+}
+function save(){try{state.version=SCHEMA_VERSION;localStorage.setItem(SK,JSON.stringify(state))}catch(e){}}
+
+function isDue(q,now=Date.now()){
+  return !q.nextReviewAt || new Date(q.nextReviewAt).getTime()<=now;
+}
+
+function sortByReviewPriority(list){
+  return [...list].sort((a,b)=>{
+    const aTs=a.nextReviewAt?new Date(a.nextReviewAt).getTime():0;
+    const bTs=b.nextReviewAt?new Date(b.nextReviewAt).getTime():0;
+    const aDue=isDue(a),bDue=isDue(b);
+    if(aDue!==bDue)return aDue?-1:1;
+    if(aTs!==bTs)return aTs-bTs;
+    const lv={red:0,yellow:1,green:2};
+    return (lv[a.level]??9)-(lv[b.level]??9);
+  });
+}
+
+function describeNextReview(q,now=Date.now()){
+  if(isDue(q,now))return '现在复习';
+  const ts=new Date(q.nextReviewAt).getTime();
+  const diff=ts-now;
+  const mins=Math.round(diff/6e4);
+  if(mins<60)return `${Math.max(10,mins)}分钟后`;
+  const hours=Math.round(diff/36e5);
+  if(hours<24)return `${Math.max(1,hours)}小时后`;
+  const days=Math.round(diff/864e5);
+  return `${Math.max(1,days)}天后`;
+}
+
+function scheduleQuestion(q,result,meta={}){
+  const now=Date.now();
+  const prevInterval=Number.isFinite(q.intervalDays)?q.intervalDays:0;
+  let intervalDays=prevInterval;
+  let nextReviewAt=q.nextReviewAt || new Date(now).toISOString();
+  let streak=Number.isFinite(q.streak)?q.streak:0;
+  let lapseCount=Number.isFinite(q.lapseCount)?q.lapseCount:0;
+
+  if(result==='red'){
+    intervalDays=0;
+    streak=0;
+    lapseCount+=1;
+    nextReviewAt=addMsISO(now,20*60*1000);
+  }else if(result==='yellow'){
+    streak=clamp(streak+1,1,99);
+    intervalDays=ladderNext(prevInterval,[1,2,4,7,10,14]);
+    nextReviewAt=addDaysISO(now,intervalDays);
+  }else{
+    streak=clamp(streak+1,1,99);
+    intervalDays=ladderNext(prevInterval,[3,7,14,21,30]);
+    nextReviewAt=addDaysISO(now,intervalDays);
+  }
+
+  q.level=result;
+  q.practiced=(q.practiced||0)+1;
+  q.lastPracticed=new Date(now).toISOString();
+  q.lastResult=result;
+  q.intervalDays=intervalDays;
+  q.streak=streak;
+  q.lapseCount=lapseCount;
+  q.nextReviewAt=nextReviewAt;
+
+  state.log.push({
+    id:q.id,
+    result,
+    source:meta.source || 'review',
+    score:meta.score ?? null,
+    sec:meta.sec ?? null,
+    t:now,
+    nextReviewAt,
+    intervalDays
+  });
+}
+
+function setManualSchedule(q,result){
+  const now=Date.now();
+  q.level=result;
+  q.lastResult=result;
+  if(result==='red'){
+    q.intervalDays=0;
+    q.streak=0;
+    q.nextReviewAt=new Date(now).toISOString();
+  }else if(result==='yellow'){
+    q.intervalDays=Math.max(1,q.intervalDays||1);
+    q.streak=Math.max(1,q.streak||1);
+    q.nextReviewAt=addDaysISO(now,q.intervalDays);
+  }else{
+    q.intervalDays=Math.max(3,q.intervalDays||3);
+    q.streak=Math.max(1,q.streak||1);
+    q.nextReviewAt=addDaysISO(now,q.intervalDays);
+  }
+}
+
+// ============ NAV ============
+const TABS=[
+  {id:'guide',icon:'📘',label:'使用指南'},
+  {id:'import',icon:'📥',label:'导入问答'},
+  {id:'ai',icon:'🤖',label:'AI工作台'},
+  {id:'bank',icon:'📋',label:'题库'},
+  {id:'flash',icon:'🃏',label:'闪卡'},
+  {id:'voice',icon:'🎙️',label:'出声练习'},
+  {id:'daily',icon:'📅',label:'每日计划'},
+  {id:'stats',icon:'📊',label:'统计'},
+];
+let curTab='guide';
+let editingId=null;
+let aiBusy=false;
+let aiConnStatus={type:'',message:''};
+let aiRunStatus={type:'',message:''};
+let localMapBusy=false;
+let interviewRecording=null;
+let interviewRecordingOn=false;
+let localMapStatus={type:'',message:''};
+let localMapReport=null;
+
+function renderNav(){
+  document.getElementById('nav').innerHTML=TABS.map(t=>`<div class="nav-t ${t.id===curTab?'on':''}" data-t="${t.id}">${t.icon} ${t.label}</div>`).join('');
+  document.querySelectorAll('.nav-t').forEach(el=>el.onclick=()=>{curTab=el.dataset.t;renderNav();renderTab()});
+}
+
+function renderTab(){
+  const m=document.getElementById('main');
+  m.classList.toggle('ai-main',curTab==='ai');
+  m.innerHTML='';
+  ({guide:renderGuide,import:renderImport,ai:renderAIWorkbench,bank:renderBank,flash:renderFlash,voice:renderVoice,daily:renderDaily,stats:renderStats})[curTab](m);
+  updateHd();
+}
+
+function updateHd(){
+  const qs=state.questions,r=qs.filter(q=>q.level==='red').length,y=qs.filter(q=>q.level==='yellow').length,g=qs.filter(q=>q.level==='green').length,due=qs.filter(q=>isDue(q)).length;
+  document.getElementById('hdStats').innerHTML=`
+    <div class="hd-b"><div class="hd-dot" style="background:var(--red)"></div>${r}</div>
+    <div class="hd-b"><div class="hd-dot" style="background:var(--yellow)"></div>${y}</div>
+    <div class="hd-b"><div class="hd-dot" style="background:var(--green)"></div>${g}</div>
+    <div class="hd-b">待复习${due}</div>
+    <div class="hd-b">共${qs.length}题</div>`;
+}
+
+// ============ GUIDE ============
+function renderGuide(m){
+  m.innerHTML=`
+  <div class="fade ai-stage">
+    <div class="sec-t">📘 使用指南</div>
+    <div class="sec-desc">这套记忆系统基于认知科学中的<strong>主动回忆</strong>和<strong>间隔重复</strong>原理，帮你把面试问答真正记在脑子里，而不是反复看笔记产生"我记住了"的错觉。</div>
+
+    <div class="guide-steps">
+      <div class="g-step" data-step="1">
+        <h4>第一步：导入你的面试问答</h4>
+        <p>进入「📥 导入问答」页面，你可以逐条添加，也可以把准备好的问答内容批量粘贴导入。建议先创建项目分组（比如"项目A""项目B"），再将问答归类到对应项目中。每条问答可以添加<strong>关键词</strong>作为记忆提示线索。</p>
+      </div>
+      <div class="g-step" data-step="2">
+        <h4>第二步：用闪卡逼自己回忆</h4>
+        <p>进入「🃏 闪卡」页面，系统会优先展示你标记为"不熟"的题目。看到问题后，<strong>先在脑中组织答案</strong>，再点击翻转查看参考答案。回答完毕后，诚实地自评掌握程度。这个"先回忆再核对"的过程是记忆形成的关键。</p>
+      </div>
+      <div class="g-step" data-step="3">
+        <h4>第三步：出声模拟面试</h4>
+        <p>进入「🎙️ 出声练习」页面，站起来，像面对面试官一样<strong>大声回答</strong>。系统会随机出题并计时，练完后给自己打分。出声练习比默读有效得多——它模拟了真实面试的紧张感，也能帮你发现表达不流畅的地方。</p>
+      </div>
+      <div class="g-step" data-step="4">
+        <h4>第四步：按每日计划坚持练习</h4>
+        <p>进入「📅 每日计划」页面，系统会自动生成早中晚三段练习安排。早上15分钟用闪卡快速回忆，中午10分钟出声练习3道题，晚上5分钟回顾并更新掌握程度。<strong>每天坚持，比一次突击有效十倍。</strong></p>
+      </div>
+      <div class="g-step" data-step="5">
+        <h4>第五步：查看统计，找到薄弱环节</h4>
+        <p>进入「📊 统计」页面，查看各项目的掌握率分布。红色越多的项目越需要优先练习，绿色越多说明已经比较稳固了。</p>
+      </div>
+    </div>
+
+    <div class="g-tip">
+      <strong>核心原则：</strong>每次练习都要先遮住答案、逼自己回忆，而不是直接看答案。这个过程虽然费力，但正是这种"费力"让记忆变得牢固。反复阅读给人"我记住了"的错觉，只有主动提取才能形成长期记忆。
+    </div>
+  </div>`;
+}
+
+// ============ IMPORT ============
+function renderImport(m){
+  const bundledEntries=Object.entries(window.BUNDLED_IMPORTS||{});
+  m.innerHTML=`
+  <div class="fade">
+    <div class="sec-t">📥 导入面试问答</div>
+
+    <div class="import-area">
+      <h3>管理项目分组</h3>
+      <div class="imp-row-h" style="margin-bottom:10px">
+        <input class="imp-input" id="newProjName" placeholder="输入新项目名称，如：增长策略项目" style="flex:2">
+        <button class="btn btn-p" onclick="addProject()" style="flex-shrink:0">创建项目</button>
+      </div>
+      <div id="projList" style="display:flex;gap:6px;flex-wrap:wrap"></div>
+    </div>
+
+    <div class="import-area">
+      <h3>逐条添加</h3>
+      <div class="imp-row">
+        <label>面试问题</label>
+        <input class="imp-input" id="addQ" placeholder="输入面试官会问的问题…">
+      </div>
+      <div class="imp-row">
+        <label>参考答案</label>
+        <textarea class="imp-input" id="addA" placeholder="写下你准备的回答…"></textarea>
+      </div>
+      <div class="imp-row-h">
+        <div class="imp-row">
+          <label>关键词（用逗号分隔）</label>
+          <input class="imp-input" id="addKw" placeholder="如：STAR法则,数据驱动,ROI">
+        </div>
+        <div class="imp-row">
+          <label>所属项目</label>
+          <select class="imp-sel" id="addProj" style="width:100%"></select>
+        </div>
+      </div>
+      <button class="btn btn-p" onclick="addSingle()">添加这条问答</button>
+    </div>
+
+    <div class="import-area">
+      <h3>本地智能映射导入</h3>
+      <p style="font-size:13px;color:var(--ink3);margin-bottom:12px">无需联网或大模型。浏览器会在本地解析 Markdown / 文本内容，并根据文件标题、项目名、关键词和问答结构自动映射到现有项目，再去重导入题库。</p>
+      <div class="imp-row">
+        <label>上传文本文件（可多选）</label>
+        <input id="localMapFilesInput" type="file" multiple accept=".txt,.md,.markdown,.json,.csv,.html,.htm,text/plain,text/markdown,application/json,text/csv,text/html" onchange="renderLocalMapFileList(Array.from(this.files||[]))">
+        <div class="ai-files" id="localMapFiles"></div>
+      </div>
+      <div class="imp-row">
+        <label>或直接粘贴文本</label>
+        <textarea class="imp-input" id="localMapText" rows="8" placeholder="把 Markdown / 纯文本 / 面试问答内容粘贴到这里…"></textarea>
+      </div>
+      <div class="imp-row-h">
+        <div class="imp-row">
+          <label>识别失败时归入</label>
+          <select class="imp-sel" id="localMapFallback" style="width:100%"></select>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-s" id="localMapPreviewBtn" onclick="previewLocalSmartImport()">先预览识别结果</button>
+        <button class="btn btn-p" id="localMapBtn" onclick="runLocalSmartImport()">开始本地映射导入</button>
+      </div>
+      <div class="ai-status ${localMapStatus.message?'show':''} ${localMapStatus.type||''}" id="localMapStatus">${escapeHtml(localMapStatus.message||'')}</div>
+      <div class="local-map-preview" id="localMapPreview"></div>
+    </div>
+
+    ${bundledEntries.length?`<div class="import-area">
+      <h3>已映射文件导入</h3>
+      <p style="font-size:13px;color:var(--ink3);margin-bottom:12px">检测到已整理好的 Markdown 映射稿。你可以按文件单独导入，系统会自动映射到对应项目并跳过重复题目。</p>
+      <div class="btn-row">
+        ${bundledEntries.map(([key,bundle])=>`<button class="btn btn-p" onclick="importBundledDataset('${key}')">导入《${bundle.name||key}》 (${(bundle.questions||[]).length}题)</button>`).join('')}
+      </div>
+    </div>`:''}
+
+    <div class="import-area">
+      <h3>数据管理</h3>
+      <div class="btn-row">
+        <button class="btn btn-s tip-btn" data-tip="把当前浏览器里保存的项目、题目、练习状态和复习记录导出成 JSON 文件，方便备份或迁移到别的设备。" onclick="exportData()">📤 导出数据（JSON）</button>
+        <button class="btn btn-s tip-btn" data-tip="把之前导出的 JSON 文件重新导回网站，用来恢复数据或迁移数据。导入后会按文件内容恢复当前本地题库。" onclick="document.getElementById('importFile').click()">📥 导入数据（JSON）</button>
+        <input type="file" id="importFile" accept=".json" style="display:none" onchange="importJSON(event)">
+        <button class="btn btn-d tip-btn" data-tip="删除当前浏览器里这个网站保存的所有本地数据，相当于重置题库。点击后还需要输入确认词，避免误操作。" onclick="confirmClearAll()">🗑 清空全部</button>
+      </div>
+    </div>
+  </div>`;
+  renderProjList();
+  fillProjSelects();
+  renderLocalMapPreview(localMapReport);
+}
+
+function renderProjList(){
+  const el=document.getElementById('projList');
+  if(!el)return;
+  el.innerHTML=state.projects.map(p=>{
+    const cnt=state.questions.filter(q=>q.project===p.id).length;
+    return `<div class="f-chip on" style="display:flex;align-items:center;gap:6px">
+      ${p.name} <span style="font-size:10px;color:var(--ink4)">(${cnt}题)</span>
+      ${p.id!=='default'?`<span style="cursor:pointer;color:var(--red);font-size:14px;margin-left:2px" onclick="delProject('${p.id}')">&times;</span>`:''}
+    </div>`;
+  }).join('');
+}
+
+function fillProjSelects(){
+  const html=state.projects.map(p=>`<option value="${p.id}">${p.name}</option>`).join('');
+  ['addProj','editProj','localMapFallback'].forEach(id=>{const el=document.getElementById(id);if(el)el.innerHTML=html});
+}
+
+function addProject(){
+  const input=document.getElementById('newProjName');
+  const name=input.value.trim();
+  if(!name)return;
+  const id='proj_'+Date.now();
+  state.projects.push({id,name});
+  input.value='';
+  save();renderProjList();fillProjSelects();
+}
+
+function delProject(id){
+  if(!confirm('删除这个项目分组？（其下的题目将移到"默认分组"）'))return;
+  state.questions.forEach(q=>{if(q.project===id)q.project='default'});
+  state.projects=state.projects.filter(p=>p.id!==id);
+  if(state.projFilter===id)state.projFilter='all';
+  if(state.flashProjFilter===id)state.flashProjFilter='all';
+  save();renderProjList();fillProjSelects();
+}
+
+function addSingle(){
+  const q=document.getElementById('addQ').value.trim();
+  const a=document.getElementById('addA').value.trim();
+  const kw=document.getElementById('addKw').value.split(/[,，]/).map(s=>s.trim()).filter(Boolean);
+  const proj=document.getElementById('addProj').value;
+  if(!q){alert('请输入问题');return}
+  state.questions.push(normalizeQuestion({id:Date.now(),project:proj,q,answer:a||'（暂未填写答案）',keywords:kw,level:'red',practiced:0,lastPracticed:null,score:0}));
+  document.getElementById('addQ').value='';document.getElementById('addA').value='';document.getElementById('addKw').value='';
+  save();updateHd();
+  alert('已添加！');
+}
+
+function openEditModal(id){
+  const q=state.questions.find(x=>x.id===id);
+  if(!q)return;
+  editingId=id;
+  fillProjSelects();
+  document.getElementById('editQ').value=q.q;
+  document.getElementById('editA').value=q.answer;
+  document.getElementById('editKw').value=(q.keywords||[]).join(', ');
+  document.getElementById('editProj').value=q.project || 'default';
+  document.getElementById('editLv').value=q.level || 'red';
+  document.getElementById('editModal').classList.add('show');
+}
+
+function closeEditModal(){
+  editingId=null;
+  document.getElementById('editModal').classList.remove('show');
+}
+
+function saveEdit(){
+  const q=state.questions.find(x=>x.id===editingId);
+  if(!q)return;
+  const nq=document.getElementById('editQ').value.trim();
+  if(!nq){alert('请输入问题');return}
+  q.q=nq;
+  q.answer=document.getElementById('editA').value.trim()||'（暂未填写答案）';
+  q.keywords=document.getElementById('editKw').value.split(/[,，]/).map(s=>s.trim()).filter(Boolean);
+  q.project=document.getElementById('editProj').value;
+  const nextLevel=document.getElementById('editLv').value;
+  if(nextLevel!==q.level)setManualSchedule(q,nextLevel);
+  save();
+  closeEditModal();
+  updateHd();
+  if(curTab==='bank')renderBank(document.getElementById('main'));
+}
+
+function exportData(){
+  const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='interview_data.json';a.click();
+}
+
+function importJSON(e){
+  const file=e.target.files[0];if(!file)return;
+  const reader=new FileReader();
+  reader.onload=function(ev){
+    try{
+      const data=JSON.parse(ev.target.result);
+      if(data.projects&&data.questions){
+        state=migrateState(data);save();location.reload();
+      }else{alert('文件格式不正确')}
+    }catch(err){alert('解析失败：'+err.message)}
+  };
+  reader.readAsText(file);
+  e.target.value='';
+}
+
+function confirmClearAll(){
+  if(!confirm('确定清空所有数据？此操作不可恢复。'))return;
+  const confirmText=prompt('这是高风险操作。请输入“清空”以确认删除当前浏览器中的全部本地数据：','');
+  if(confirmText!=='清空'){
+    alert('未完成二次确认，已取消清空。');
+    return;
+  }
+  localStorage.removeItem(SK);
+  location.reload();
+}
+
+function importBundledDataset(key){
+  const bundle=window.BUNDLED_IMPORTS&&window.BUNDLED_IMPORTS[key];
+  if(!bundle){alert('没有找到可导入的映射数据');return}
+  const result=mergeBundledDataset(bundle);
+  save();
+  updateHd();
+  fillProjSelects();
+  renderProjList();
+  alert(`已导入《${bundle.name||key}》映射稿：新增 ${result.added} 题，跳过 ${result.skipped} 条重复题目，新增 ${result.newProjects} 个分组。`);
+}
+
+function mergeBundledDataset(bundle){
+  let added=0,skipped=0,newProjects=0;
+  (bundle.projects||[]).forEach(project=>{
+    if(!state.projects.some(p=>p.id===project.id)){
+      state.projects.push({id:project.id,name:project.name});
+      newProjects++;
+    }
+  });
+  (bundle.questions||[]).forEach(item=>{
+    const exists=state.questions.some(q=>q.project===item.project && q.q.trim()===item.q.trim());
+    if(exists){skipped++;return}
+    state.questions.push(normalizeQuestion({
+      id:Date.now()+Math.random(),
+      project:item.project,
+      q:item.q,
+      answer:item.answer,
+      keywords:item.keywords||[],
+      level:'red',
+      practiced:0,
+      lastPracticed:null,
+      score:0
+    }));
+    added++;
+  });
+  return {added,skipped,newProjects};
+}
+
+function autoImportBundledDatasetOnce(key,flag){
+  try{
+    if(localStorage.getItem(flag))return;
+    const bundle=window.BUNDLED_IMPORTS&&window.BUNDLED_IMPORTS[key];
+    if(!bundle)return;
+    mergeBundledDataset(bundle);
+    save();
+    localStorage.setItem(flag,'1');
+  }catch(e){}
+}
+
+const LOCAL_PROJECT_ALIAS_MAP={
+  default:['默认分组','通用','面试','项目','问答','经验','案例']
+};
+
+function setLocalMapStatus(type,message){
+  localMapStatus={type:type||'',message:message||''};
+  const el=document.getElementById('localMapStatus');
+  if(el){
+    el.className=`ai-status ${message?'show':''} ${type||''}`.trim();
+    el.textContent=message||'';
+  }
+}
+
+function renderLocalMapPreview(report){
+  const el=document.getElementById('localMapPreview');
+  if(!el)return;
+  if(!report || !report.totalRecognized){
+    el.innerHTML='';
+    return;
+  }
+  const projectMap=Object.fromEntries(state.projects.map(project=>[project.id,project.name]));
+  const sourceRows=(report.sources||[]).map(source=>`
+    <div class="local-map-card">
+      <div class="local-map-title">${escapeHtml(source.name)}</div>
+      <div class="local-map-summary">识别 ${source.recognized} 条，新增 ${source.added} 条，跳过 ${source.skipped} 条重复题目</div>
+    </div>`).join('');
+  const projectChips=(report.projects||[]).map(item=>`<span class="f-chip on">${escapeHtml(projectMap[item.projectId]||item.projectId)} · ${item.count}条</span>`).join('');
+  const previewItems=(report.items||[]).slice(0,8).map(item=>`
+    <div class="local-map-item">
+      <span class="f-chip on">${escapeHtml(projectMap[item.projectId]||item.projectId)}</span>
+      <div class="local-map-item-q">${escapeHtml(item.q)}</div>
+      <div class="local-map-item-a">${escapeHtml(item.answer.slice(0,120))}${item.answer.length>120?'...':''}</div>
+    </div>`).join('');
+  const modeTitle=report.mode==='preview'?'导入前预览':'本次识别结果';
+  const modeSummary=report.mode==='preview'
+    ? `预计识别 ${report.totalRecognized} 条问答，可新增 ${report.totalAdded} 条，预计跳过 ${report.totalSkipped} 条重复题目。`
+    : `共识别 ${report.totalRecognized} 条问答，新增 ${report.totalAdded} 条，跳过 ${report.totalSkipped} 条重复题目。`;
+  el.innerHTML=`
+    <div class="local-map-card">
+      <div class="local-map-title">${modeTitle}</div>
+      <div class="local-map-summary">${modeSummary}</div>
+    </div>
+    <div class="local-map-card">
+      <div class="local-map-title">项目映射分布</div>
+      <div class="local-map-chips">${projectChips || '<span class="f-chip">暂无映射结果</span>'}</div>
+    </div>
+    ${previewItems?`<div class="local-map-card">
+      <div class="local-map-title">识别题目预览</div>
+      <div class="local-map-list">${previewItems}</div>
+      ${(report.items||[]).length>8?`<div class="local-map-summary" style="margin-top:8px">其余 ${(report.items||[]).length-8} 条会在导入后进入题库。</div>`:''}
+    </div>`:''}
+    ${sourceRows}`;
+}
+
+function renderLocalMapFileList(files){
+  const el=document.getElementById('localMapFiles');
+  if(!el)return;
+  if(!files||!files.length){el.innerHTML='';return}
+  el.innerHTML=files.map(file=>`<div>${escapeHtml(file.name)} · ${(file.size/1024).toFixed(1)} KB</div>`).join('');
+}
+
+function normalizeLocalImportText(text){
+  return String(text||'')
+    .toLowerCase()
+    .replace(/[`~*_>#\[\]\(\)\|]/g,' ')
+    .replace(/[—–]/g,'-')
+    .replace(/\s+/g,' ')
+    .trim();
+}
+
+function stripLocalMarkdownDecorators(line){
+  return String(line||'')
+    .replace(/^\s*#{1,6}\s*/,'')
+    .replace(/^\s*[-*+]\s+/,'')
+    .replace(/^\s*>\s?/,'')
+    .replace(/\*\*([^*]+)\*\*/g,'$1')
+    .replace(/__([^_]+)__/g,'$1')
+    .replace(/`([^`]+)`/g,'$1')
+    .trim();
+}
+
+function isLocalQuestionCandidate(line){
+  const plain=stripLocalMarkdownDecorators(line);
+  if(!plain)return false;
+  if(/^(q\d+(?:[-—–][^：:]+)?|问题|追问|面试问题)\s*[：:]/i.test(plain))return true;
+  if(/^q\d+\b/i.test(plain))return true;
+  return /[？?]$/.test(plain) && plain.length<=120;
+}
+
+function cleanLocalQuestionText(line){
+  let plain=stripLocalMarkdownDecorators(line);
+  plain=plain
+    .replace(/^(q\d+(?:[-—–][^：:]+)?)\s*[：:]\s*/i,'')
+    .replace(/^(q\d+)\s+/i,'')
+    .replace(/^(问题|追问|面试问题)\s*[：:]\s*/,'')
+    .trim();
+  return plain;
+}
+
+function cleanLocalAnswerLine(line){
+  return String(line||'')
+    .replace(/^\s*>\s?/,'')
+    .replace(/^\s*[-*+]\s+/,'')
+    .replace(/^\s*\*\*?(回答|答|a)\s*[：:]\s*\*\*?\s*/i,'')
+    .replace(/^\s*(回答|答|a)\s*[：:]\s*/i,'')
+    .trimEnd();
+}
+
+function extractLocalDocTitle(text,sourceName=''){
+  const lines=String(text||'').replace(/\r\n?/g,'\n').split('\n');
+  const heading=lines.find(line=>/^\s*#{1,6}\s+/.test(line));
+  const title=heading?stripLocalMarkdownDecorators(heading):'';
+  return title || sourceName || '本地文本';
+}
+
+function fallbackParseLocalBlocks(text){
+  return String(text||'')
+    .split(/\n\s*\n+/)
+    .map(block=>block.trim())
+    .filter(Boolean)
+    .map(block=>{
+      const lines=block.split('\n').map(line=>line.trim()).filter(Boolean);
+      if(lines.length<2)return null;
+      const q=cleanLocalQuestionText(lines[0]);
+      const answer=lines.slice(1).map(cleanLocalAnswerLine).join('\n').trim();
+      if(!q || !answer)return null;
+      return {q,answer};
+    })
+    .filter(Boolean);
+}
+
+function parseLocalSmartBlocks(text){
+  const lines=String(text||'').replace(/\r\n?/g,'\n').split('\n');
+  const blocks=[];
+  let current=null;
+  const pushCurrent=()=>{
+    if(!current||!current.q)return;
+    const answer=current.answerLines.join('\n').replace(/\n{3,}/g,'\n\n').trim();
+    if(answer)blocks.push({q:current.q,answer});
+    current=null;
+  };
+
+  lines.forEach(line=>{
+    const trimmed=line.trim();
+    if(/^---+$/.test(trimmed))return;
+    const headingMatch=line.match(/^\s*#{1,6}\s+(.+?)\s*$/);
+    const probe=headingMatch?headingMatch[1]:line;
+
+    if(isLocalQuestionCandidate(probe)){
+      pushCurrent();
+      current={q:cleanLocalQuestionText(probe),answerLines:[]};
+      return;
+    }
+
+    if(!current)return;
+
+    if(!trimmed){
+      if(current.answerLines.length && current.answerLines[current.answerLines.length-1] !== '')current.answerLines.push('');
+      return;
+    }
+
+    if(/^\s*\*\*?(回答|答|a)\s*[：:]\s*\*\*?\s*$/i.test(trimmed) || /^\s*(回答|答|a)\s*[：:]\s*$/i.test(trimmed)){
+      return;
+    }
+
+    current.answerLines.push(cleanLocalAnswerLine(line));
+  });
+
+  pushCurrent();
+  return blocks.length?blocks:fallbackParseLocalBlocks(text);
+}
+
+function getLocalProjectTerms(project){
+  const nameParts=String(project.name||'')
+    .split(/[·•/]/)
+    .map(part=>part.trim())
+    .filter(Boolean);
+  return [...new Set([project.id,project.name,...nameParts,...(LOCAL_PROJECT_ALIAS_MAP[project.id]||[])])];
+}
+
+function inferLocalProjectId(text,fallbackId='default'){
+  const hay=normalizeLocalImportText(text);
+  let bestId=fallbackId;
+  let bestScore=0;
+
+  state.projects.forEach(project=>{
+    if(project.id==='default')return;
+    let score=0;
+    getLocalProjectTerms(project).forEach(term=>{
+      const normalized=normalizeLocalImportText(term);
+      if(!normalized)return;
+      if(hay.includes(normalized)){
+        score += normalized.length>=8?8:normalized.length>=5?6:4;
+      }
+    });
+    if(score>bestScore){
+      bestScore=score;
+      bestId=project.id;
+    }
+  });
+
+  return bestScore>0?bestId:fallbackId;
+}
+
+function buildLocalKeywords(projectId,titleText=''){
+  const project=state.projects.find(p=>p.id===projectId);
+  const fromProject=project?String(project.name).split(/[·•/]/).map(part=>part.trim()).filter(Boolean):[];
+  const fromTitle=stripLocalMarkdownDecorators(titleText).split(/[·•/]/).map(part=>part.trim()).filter(Boolean);
+  return [...new Set([...fromProject,...fromTitle])]
+    .filter(term=>term && term!=='默认分组' && term.length<=14)
+    .slice(0,5);
+}
+
+function buildLocalBundleFromText(text,sourceName,fallbackId='default'){
+  const title=extractLocalDocTitle(text,sourceName);
+  const blocks=parseLocalSmartBlocks(text);
+  const docProjectId=inferLocalProjectId(`${sourceName}\n${title}\n${text.slice(0,4000)}`,fallbackId);
+  const questions=blocks.map((block,idx)=>{
+    const projectId=inferLocalProjectId(`${sourceName}\n${title}\n${block.q}\n${block.answer}`,docProjectId);
+    return {
+      id:`local_${Date.now()}_${idx}_${Math.random().toString(36).slice(2,7)}`,
+      project:projectId,
+      q:escapeHtml(block.q),
+      answer:escapeHtml(block.answer),
+      keywords:buildLocalKeywords(projectId,title)
+    };
+  });
+  return {title,questions};
+}
+
+async function collectLocalMapSources(){
+  const fileInput=document.getElementById('localMapFilesInput');
+  const textEl=document.getElementById('localMapText');
+  const files=fileInput&&fileInput.files?Array.from(fileInput.files):[];
+  const pastedText=textEl?textEl.value.trim():'';
+  if(!files.length && !pastedText){
+    throw new Error('请先上传文本文件，或粘贴一段 Markdown / 文本内容');
+  }
+  const sources=[];
+  for(const file of files){
+    const text=await readFileAsText(file);
+    if(text.trim())sources.push({name:file.name,text});
+  }
+  if(pastedText)sources.push({name:'粘贴文本',text:pastedText});
+  return sources;
+}
+
+function analyzeLocalMapSources(sources,fallbackId,mode='preview'){
+  let parsed=0,added=0,skipped=0;
+  const perProject=new Map();
+  const sourceReports=[];
+  const items=[];
+
+  sources.forEach(source=>{
+    const bundle=buildLocalBundleFromText(source.text,source.name,fallbackId);
+    let sourceAdded=0,sourceSkipped=0;
+    parsed+=bundle.questions.length;
+    bundle.questions.forEach(item=>{
+      perProject.set(item.project,(perProject.get(item.project)||0)+1);
+      const exists=state.questions.some(q=>q.project===item.project && q.q.trim()===item.q.trim());
+      if(exists){skipped++;sourceSkipped++;}
+      else {added++;sourceAdded++;}
+      items.push(item);
+    });
+    sourceReports.push({
+      name:source.name,
+      recognized:bundle.questions.length,
+      added:sourceAdded,
+      skipped:sourceSkipped
+    });
+  });
+
+  return {
+    mode,
+    totalRecognized:parsed,
+    totalAdded:added,
+    totalSkipped:skipped,
+    projects:[...perProject.entries()].map(([projectId,count])=>({projectId,count})).sort((a,b)=>b.count-a.count),
+    sources:sourceReports,
+    items
+  };
+}
+
+async function previewLocalSmartImport(){
+  if(localMapBusy)return;
+  const fallbackEl=document.getElementById('localMapFallback');
+  const fallbackId=fallbackEl?fallbackEl.value:'default';
+  try{
+    localMapBusy=true;
+    const btn=document.getElementById('localMapPreviewBtn');
+    if(btn)btn.textContent='预览生成中…';
+    localMapReport=null;
+    renderLocalMapPreview(localMapReport);
+    setLocalMapStatus('', '正在本地解析文本并生成导入前预览…');
+    const sources=await collectLocalMapSources();
+    localMapReport=analyzeLocalMapSources(sources,fallbackId,'preview');
+    renderLocalMapPreview(localMapReport);
+    setLocalMapStatus('ok', `预览已生成：识别 ${localMapReport.totalRecognized} 条问答，可新增 ${localMapReport.totalAdded} 条。确认后再点“开始本地映射导入”。`);
+  }catch(err){
+    setLocalMapStatus('err', err.message || '预览生成失败');
+  }finally{
+    localMapBusy=false;
+    const btn=document.getElementById('localMapPreviewBtn');
+    if(btn)btn.textContent='先预览识别结果';
+  }
+}
+
+async function runLocalSmartImport(){
+  if(localMapBusy)return;
+  const fallbackEl=document.getElementById('localMapFallback');
+  const fallbackId=fallbackEl?fallbackEl.value:'default';
+  const fileInput=document.getElementById('localMapFilesInput');
+  const textEl=document.getElementById('localMapText');
+
+  try{
+    localMapBusy=true;
+    const btn=document.getElementById('localMapBtn');
+    if(btn)btn.textContent='本地解析中…';
+    localMapReport=null;
+    renderLocalMapPreview(localMapReport);
+    setLocalMapStatus('', '正在本地解析文本并自动映射项目…');
+
+    const sources=await collectLocalMapSources();
+    const analysis=analyzeLocalMapSources(sources,fallbackId,'imported');
+    analysis.items.forEach(item=>{
+      const exists=state.questions.some(q=>q.project===item.project && q.q.trim()===item.q.trim());
+      if(exists)return;
+      state.questions.push(normalizeQuestion({
+          id:Date.now()+Math.random(),
+          project:item.project,
+          q:item.q,
+          answer:item.answer || '（暂未填写答案）',
+          keywords:item.keywords||[],
+          level:'red',
+          practiced:0,
+          lastPracticed:null,
+          score:0
+      }));
+    });
+
+    save();
+    updateHd();
+    renderProjList();
+    fillProjSelects();
+    localMapReport=analysis;
+    renderLocalMapPreview(localMapReport);
+    if(textEl)textEl.value='';
+    if(fileInput){fileInput.value='';renderLocalMapFileList([])}
+    setLocalMapStatus('ok', `本地智能映射完成：解析 ${sources.length} 份文本，识别 ${analysis.totalRecognized} 条问答，新增 ${analysis.totalAdded} 条，跳过 ${analysis.totalSkipped} 条重复题目。`);
+  }catch(err){
+    setLocalMapStatus('err', err.message || '本地映射导入失败');
+  }finally{
+    localMapBusy=false;
+    const btn=document.getElementById('localMapBtn');
+    if(btn)btn.textContent='开始本地映射导入';
+  }
+}
+
+// ============ AI WORKBENCH ============
+const AI_SYSTEM_PROMPT=`你是一个面试准备助手，要把用户上传的项目资料和面试对话整理成结构化问答，并严格映射到已有项目。
+
+要求：
+1. 只输出 JSON，不要输出解释、Markdown、代码块围栏。
+2. 每一条 items 都必须映射到一个已有项目的 projectId；如果无法确定，使用 "default"。
+3. 输出适合面试练习的高价值问答，问题要像面试官会问的话，答案要保留关键数据点与推理链。
+4. 去掉明显重复、太泛、太空的话术。
+5. keywords 保持 3 到 6 个短词。
+6. 如果材料里有面试追问、反驳、澄清，优先整理成更尖锐、更真实的面试题。
+
+返回格式：
+{
+  "summary":"一句话总结本次整理结果",
+  "items":[
+    {
+      "projectId":"已有项目ID",
+      "projectName":"已有项目名",
+      "question":"面试问题",
+      "answer":"参考答案",
+      "keywords":["关键词1","关键词2"],
+      "source":"document|dialogue|mixed",
+      "confidence":0.91
+    }
+  ]
+}`;
+
+function setAIConnStatus(type,message){
+  aiConnStatus={type:type||'',message:message||''};
+  const el=document.getElementById('aiConnStatus');
+  if(el){
+    el.className=`ai-status ${message?'show':''} ${type||''}`.trim();
+    el.textContent=message||'';
+  }
+}
+
+function setAIRunStatus(type,message){
+  aiRunStatus={type:type||'',message:message||''};
+  const el=document.getElementById('aiRunStatus');
+  if(el){
+    el.className=`ai-status ${message?'show':''} ${type||''}`.trim();
+    el.textContent=message||'';
+  }
+}
+
+function renderAIFileList(files){
+  const el=document.getElementById('aiFiles');
+  if(!el)return;
+  if(!files||!files.length){el.innerHTML='';return}
+  el.innerHTML=files.map(file=>`<div>${escapeHtml(file.name)} · ${(file.size/1024).toFixed(1)} KB</div>`).join('');
+}
+
+function syncLLMConfigFromForm(){
+  const baseEl=document.getElementById('llmBaseUrl');
+  const keyEl=document.getElementById('llmApiKey');
+  const modelEl=document.getElementById('llmModel');
+  if(!baseEl||!keyEl||!modelEl)return state.llmConfig;
+  state.llmConfig=normalizeLLMConfig({
+    baseUrl:baseEl.value.trim(),
+    apiKey:keyEl.value.trim(),
+    model:modelEl.value.trim()
+  });
+  save();
+  return state.llmConfig;
+}
+
+function getChatCompletionsEndpoint(baseUrl){
+  const clean=(baseUrl||'').trim().replace(/\/+$/,'');
+  if(!clean)return '';
+  if(/\/chat\/completions$/i.test(clean))return clean;
+  if(/\/v1$/i.test(clean))return `${clean}/chat/completions`;
+  return `${clean}/v1/chat/completions`;
+}
+
+function readFileAsText(file){
+  return new Promise((resolve,reject)=>{
+    const reader=new FileReader();
+    reader.onload=()=>resolve(typeof reader.result==='string'?reader.result:'');
+    reader.onerror=()=>reject(new Error(`读取文件失败：${file.name}`));
+    reader.readAsText(file);
+  });
+}
+
+function readFileAsArrayBuffer(file){
+  return new Promise((resolve,reject)=>{
+    const reader=new FileReader();
+    reader.onload=()=>resolve(reader.result);
+    reader.onerror=()=>reject(new Error(`读取文件失败：${file.name}`));
+    reader.readAsArrayBuffer(file);
+  });
+}
+
+const externalScriptCache={};
+
+function loadExternalScript(src,tester){
+  if(tester&&tester())return Promise.resolve();
+  if(externalScriptCache[src])return externalScriptCache[src];
+  externalScriptCache[src]=new Promise((resolve,reject)=>{
+    const existing=[...document.scripts].find(script=>script.src===src);
+    if(existing){
+      existing.addEventListener('load',()=>resolve(),{once:true});
+      existing.addEventListener('error',()=>reject(new Error(`加载解析组件失败：${src}`)),{once:true});
+      return;
+    }
+    const script=document.createElement('script');
+    script.src=src;
+    script.async=true;
+    script.onload=()=>resolve();
+    script.onerror=()=>reject(new Error(`加载解析组件失败：${src}`));
+    document.head.appendChild(script);
+  }).then(()=>{
+    if(tester&&!tester())throw new Error(`解析组件加载成功，但未能初始化：${src}`);
+  });
+  return externalScriptCache[src];
+}
+
+async function ensurePdfJsLoaded(){
+  await loadExternalScript('https://cdn.jsdelivr.net/npm/pdfjs-dist@4.4.168/build/pdf.min.js',()=>!!window.pdfjsLib);
+  if(window.pdfjsLib&&window.pdfjsLib.GlobalWorkerOptions){
+    window.pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdn.jsdelivr.net/npm/pdfjs-dist@4.4.168/build/pdf.worker.min.js';
+  }
+}
+
+async function ensureMammothLoaded(){
+  await loadExternalScript('https://cdn.jsdelivr.net/npm/mammoth@1.8.0/mammoth.browser.min.js',()=>!!window.mammoth);
+}
+
+async function readPdfAsText(file){
+  await ensurePdfJsLoaded();
+  const buffer=await readFileAsArrayBuffer(file);
+  const pdf=await window.pdfjsLib.getDocument({data:new Uint8Array(buffer)}).promise;
+  const pages=[];
+  for(let i=1;i<=pdf.numPages;i++){
+    const page=await pdf.getPage(i);
+    const content=await page.getTextContent();
+    const pageText=content.items.map(item=>item&&item.str?item.str:'').join(' ').replace(/\s+/g,' ').trim();
+    if(pageText)pages.push(`第 ${i} 页\n${pageText}`);
+  }
+  return pages.join('\n\n');
+}
+
+async function readDocxAsText(file){
+  await ensureMammothLoaded();
+  const buffer=await readFileAsArrayBuffer(file);
+  const result=await window.mammoth.extractRawText({arrayBuffer:buffer});
+  return (result&&result.value?result.value:'').replace(/\n{3,}/g,'\n\n').trim();
+}
+
+async function readSupportedDocumentText(file){
+  const name=(file&&file.name?file.name:'').toLowerCase();
+  if(name.endsWith('.pdf'))return readPdfAsText(file);
+  if(name.endsWith('.docx'))return readDocxAsText(file);
+  if(name.endsWith('.doc'))throw new Error(`暂不支持直接解析旧版 Word（.doc）：${file.name}，建议先另存为 .docx 后再导入`);
+  return readFileAsText(file);
+}
+
+async function collectAISourceText(files,dialogue,notes){
+  const sections=[];
+  const unreadable=[];
+  const parseErrors=[];
+  let totalChars=0;
+  const pushSection=(title,content)=>{
+    if(!content)return;
+    const maxPerSection=22000;
+    const trimmed=content.trim();
+    if(!trimmed)return;
+    const sliced=trimmed.slice(0,maxPerSection);
+    totalChars+=sliced.length;
+    sections.push(`### ${title}\n${sliced}`);
+  };
+  for(const file of files){
+    try{
+      const text=await readSupportedDocumentText(file);
+      pushSection(`文档：${file.name}`,text);
+    }catch(err){
+      unreadable.push(file.name);
+      parseErrors.push(err&&err.message?err.message:`解析失败：${file.name}`);
+    }
+  }
+  pushSection('面试对话',dialogue||'');
+  pushSection('补充说明',notes||'');
+  return {
+    text:sections.join('\n\n').slice(0,120000),
+    unreadable,
+    parseErrors
+  };
+}
+
+function getProjectsPromptText(){
+  return state.projects.map(p=>`- ${p.id}: ${p.name}`).join('\n');
+}
+
+function extractAssistantText(data){
+  const msg=data&&data.choices&&data.choices[0]&&data.choices[0].message?data.choices[0].message:null;
+  if(!msg)return '';
+  if(typeof msg.content==='string')return msg.content;
+  if(Array.isArray(msg.content)){
+    return msg.content.map(part=>typeof part==='string'?part:(part&&part.text?part.text:'')).join('\n');
+  }
+  return '';
+}
+
+function extractJsonPayload(text){
+  const raw=(text||'').trim();
+  if(!raw)throw new Error('模型没有返回内容');
+  const fence=raw.match(/```(?:json)?\s*([\s\S]*?)```/i);
+  const candidate=fence?fence[1].trim():raw;
+  try{return JSON.parse(candidate)}catch(e){}
+  const start=candidate.indexOf('{');
+  const end=candidate.lastIndexOf('}');
+  if(start!==-1&&end!==-1&&end>start){
+    return JSON.parse(candidate.slice(start,end+1));
+  }
+  throw new Error('模型返回的不是可解析的 JSON');
+}
+
+function resolveProjectId(projectId,projectName){
+  if(projectId && state.projects.some(p=>p.id===projectId))return projectId;
+  if(projectName){
+    const lowered=projectName.trim().toLowerCase();
+    const exact=state.projects.find(p=>p.name.toLowerCase()===lowered);
+    if(exact)return exact.id;
+    const fuzzy=state.projects.find(p=>p.name.toLowerCase().includes(lowered)||lowered.includes(p.name.toLowerCase()));
+    if(fuzzy)return fuzzy.id;
+  }
+  return 'default';
+}
+
+function normalizeAIItem(item,idx){
+  const projectId=resolveProjectId(item.projectId,item.projectName);
+  const project=state.projects.find(p=>p.id===projectId);
+  return {
+    id:`ai_${Date.now()}_${idx}_${Math.random().toString(36).slice(2,7)}`,
+    projectId,
+    projectName:project?project.name:(item.projectName||'默认分组'),
+    question:(item.question||'').trim(),
+    answer:(item.answer||'').trim(),
+    keywords:Array.isArray(item.keywords)?item.keywords.map(x=>String(x).trim()).filter(Boolean).slice(0,6):[],
+    source:(item.source||'mixed').trim(),
+    confidence:Number.isFinite(item.confidence)?Number(item.confidence):null
+  };
+}
+
+async function callLLM(messages){
+  const cfg=syncLLMConfigFromForm();
+  if(!cfg.baseUrl||!cfg.apiKey||!cfg.model)throw new Error('请先填写 Base URL、API Key 和 Model');
+  const endpoint=getChatCompletionsEndpoint(cfg.baseUrl);
+  const resp=await fetch(endpoint,{
+    method:'POST',
+    headers:{
+      'Content-Type':'application/json',
+      'Authorization':`Bearer ${cfg.apiKey}`
+    },
+    body:JSON.stringify({
+      model:cfg.model,
+      temperature:0.2,
+      messages
+    })
+  });
+  if(!resp.ok){
+    const text=await resp.text();
+    throw new Error(`模型调用失败（${resp.status}）：${text.slice(0,300)}`);
+  }
+  const data=await resp.json();
+  return extractAssistantText(data);
+}
+
+async function testLLMConnection(){
+  try{
+    setAIConnStatus('', '正在测试模型连接…');
+    const text=await callLLM([
+      {role:'system',content:'你是一个接口连通性检查助手。只返回 {"ok":true,"message":"..."} 这样的 JSON。'},
+      {role:'user',content:'请返回一个最小 JSON，确认接口可用。'}
+    ]);
+    const payload=extractJsonPayload(text);
+    setAIConnStatus('ok', `连接成功：${payload.message||'模型已可调用'}`);
+  }catch(err){
+    setAIConnStatus('err', err.message || '连接测试失败');
+  }
+}
+
+async function runAIWorkbench(){
+  if(aiBusy)return;
+  const fileInput=document.getElementById('aiFilesInput');
+  const dialogueEl=document.getElementById('aiDialogue');
+  const notesEl=document.getElementById('aiNotes');
+  const files=fileInput&&fileInput.files?Array.from(fileInput.files):[];
+  const dialogue=dialogueEl?dialogueEl.value.trim():'';
+  const notes=notesEl?notesEl.value.trim():'';
+  if(!files.length && !dialogue && !notes){
+    setAIRunStatus('err','请先上传至少一个文档，或粘贴面试对话/补充说明');
+    return;
+  }
+  try{
+    aiBusy=true;
+    const runBtn=document.getElementById('aiRunBtn');
+    if(runBtn)runBtn.textContent='整理中…';
+    setAIRunStatus('', '正在读取材料并调用模型整理问答…');
+    syncLLMConfigFromForm();
+    const bundle=await collectAISourceText(files,dialogue,notes);
+    if(!bundle.text)throw new Error('没有读取到可用文本。当前版本支持 txt / md / json / csv / html 等文本文件；如果是 pdf/docx，请先复制文本再粘贴。');
+    const userPrompt=`已有项目列表：\n${getProjectsPromptText()}\n\n请基于下面材料，提炼出适合加入面试记忆本的问答，并严格映射到上面的项目 ID。\n\n材料如下：\n${bundle.text}`;
+    const text=await callLLM([
+      {role:'system',content:AI_SYSTEM_PROMPT},
+      {role:'user',content:userPrompt}
+    ]);
+    const payload=extractJsonPayload(text);
+    const rawItems=Array.isArray(payload.items)?payload.items:[];
+    const items=rawItems.map(normalizeAIItem).filter(item=>item.question&&item.answer);
+    state.aiDraft=normalizeAIDraft({
+      summary:payload.summary || `本次从 ${files.length} 个文档和 ${dialogue?'1 段':'0 段'}对话中整理出 ${items.length} 条问答`,
+      items,
+      updatedAt:new Date().toISOString(),
+      sourceLabel:[files.length?`${files.length}个文档`:null,dialogue?'面试对话':null].filter(Boolean).join(' + ') || '文本输入'
+    });
+    save();
+    if(curTab==='ai')renderAIWorkbench(document.getElementById('main'));
+    const extra=bundle.unreadable.length?`；以下文件未能读取：${bundle.unreadable.join('、')}`:'';
+    setAIRunStatus('ok', `整理完成，得到 ${items.length} 条 AI 草稿${extra}`);
+  }catch(err){
+    setAIRunStatus('err', err.message || 'AI 整理失败');
+  }finally{
+    aiBusy=false;
+    const runBtn=document.getElementById('aiRunBtn');
+    if(runBtn)runBtn.textContent='开始AI整理';
+  }
+}
+
+function removeAIDraftItem(id){
+  state.aiDraft.items=state.aiDraft.items.filter(item=>item.id!==id);
+  save();
+  if(curTab==='ai')renderAIWorkbench(document.getElementById('main'));
+}
+
+function clearAIDraft(){
+  state.aiDraft=normalizeAIDraft({});
+  save();
+  if(curTab==='ai')renderAIWorkbench(document.getElementById('main'));
+}
+
+function importAIDraft(){
+  const items=state.aiDraft.items||[];
+  if(!items.length){setAIRunStatus('err','当前没有可导入的 AI 草稿');return}
+  let added=0,skipped=0;
+  items.forEach(item=>{
+    const exists=state.questions.some(q=>q.project===item.projectId && q.q.trim()===item.question.trim());
+    if(exists){skipped++;return}
+    state.questions.push(normalizeQuestion({
+      id:Date.now()+Math.random(),
+      project:item.projectId,
+      q:item.question,
+      answer:item.answer,
+      keywords:item.keywords,
+      level:'red',
+      practiced:0,
+      lastPracticed:null,
+      score:0,
+      nextReviewAt:new Date().toISOString(),
+      intervalDays:0,
+      streak:0,
+      lapseCount:0,
+      lastResult:null
+    }));
+    added++;
+  });
+  save();
+  updateHd();
+  setAIRunStatus('ok', `已导入 ${added} 条问答${skipped?`，跳过 ${skipped} 条重复题目`:''}`);
+}
+
+function renderAIWorkbench(m){
+  const cfg=state.llmConfig||{baseUrl:'',apiKey:'',model:''};
+  const draft=state.aiDraft||normalizeAIDraft({});
+  const draftCount=(draft.items&&draft.items.length)||0;
+  const hasConfig=!!(cfg.baseUrl&&cfg.apiKey&&cfg.model);
+  const connReady=aiConnStatus.type==='ok';
+  const step1State=connReady?'done':(hasConfig?'active':'');
+  const step2State=draftCount?'done':(hasConfig?'active':'');
+  const step3State=draftCount?'done':'';
+  m.innerHTML=`
+  <div class="fade">
+    <div class="sec-t">🤖 AI工作台</div>
+    <div class="sec-desc">把模型连接、材料输入和草稿导入收成同一条工作流。你只要先测通接口，再贴材料，结果会稳定出现在右侧。</div>
+    <div class="ai-flow">
+      <div class="ai-step ${step1State}">
+        <div class="ai-step-no">1</div>
+        <h4>连接模型</h4>
+        <p>填写 Base URL、API Key 和 Model，先确认接口真的可用。</p>
+        <div class="ai-step-tag">${connReady?'已连接':hasConfig?'待测试':'待填写'}</div>
+      </div>
+      <div class="ai-step ${step2State}">
+        <div class="ai-step-no">2</div>
+        <h4>输入材料</h4>
+        <p>上传文本类项目文档，或直接粘贴面试对话和补充说明。</p>
+        <div class="ai-step-tag">${draftCount?'已整理':hasConfig?'可开始':'等待模型'}</div>
+      </div>
+      <div class="ai-step ${step3State}">
+        <div class="ai-step-no">3</div>
+        <h4>预览结果</h4>
+        <p>先查看 AI 整理出的问答草稿，再决定是否导入题库。</p>
+        <div class="ai-step-tag">${draftCount?`已有 ${draftCount} 条草稿`:'等待输出'}</div>
+      </div>
+    </div>
+
+    <div class="import-area ai-config-card ai-panel">
+      <div class="ai-card-head">
+        <div class="ai-card-title">
+          <h3>第一步：模型配置</h3>
+          <div class="ai-card-sub">先把接口测通，再进入材料整理。连接成功后，这页的后续动作才真正有意义。</div>
+        </div>
+        <div class="ai-chip-row">
+          <span class="ai-chip"><strong>Base URL</strong>${cfg.baseUrl?'已填写':'未填写'}</span>
+          <span class="ai-chip"><strong>Model</strong>${cfg.model?escapeHtml(cfg.model):'未填写'}</span>
+        </div>
+      </div>
+      <div class="ai-config-grid">
+        <div class="imp-row">
+          <label>Base URL</label>
+          <input class="imp-input" id="llmBaseUrl" placeholder="如：https://api.openai.com/v1 或兼容接口地址" value="${escapeHtml(cfg.baseUrl||'')}">
+        </div>
+        <div class="imp-row">
+          <label>API Key</label>
+          <input class="imp-input" id="llmApiKey" type="password" placeholder="输入 API Key" value="${escapeHtml(cfg.apiKey||'')}">
+        </div>
+        <div class="imp-row">
+          <label>Model</label>
+          <input class="imp-input" id="llmModel" placeholder="如：gpt-4o-mini / qwen-plus / deepseek-chat" value="${escapeHtml(cfg.model||'')}">
+        </div>
+      </div>
+      <div class="ai-actions-split" style="margin-top:12px">
+        <button class="btn btn-s ai-secondary" onclick="testLLMConnection()">测试连接</button>
+        <button class="btn btn-s ai-quiet" onclick="syncLLMConfigFromForm();setAIConnStatus('ok','模型配置已保存到本地浏览器')">保存配置</button>
+      </div>
+      <div class="ai-status ${aiConnStatus.message?'show':''} ${aiConnStatus.type||''}" id="aiConnStatus">${escapeHtml(aiConnStatus.message||'')}</div>
+      <div class="ai-note">配置只保存在当前浏览器本地。前端会直接调用你填写的模型接口，所以更适合个人使用；如果服务商不支持浏览器跨域调用，测试连接可能会失败。</div>
+    </div>
+
+    <div class="ai-shell">
+      <div class="ai-col">
+        <div class="import-area ai-panel">
+          <div class="ai-card-head">
+            <div class="ai-card-title">
+              <h3>第二步：输入材料</h3>
+              <div class="ai-card-sub">文档和面试对话都可以一起交给模型。越接近真实面试语境，整理出来的草稿越能直接用。</div>
+            </div>
+          </div>
+          <div class="ai-input-note">推荐顺序：先上传项目文档，再补一段面试对话，最后用“补充说明”告诉模型你更关注的岗位、指标或项目边界。</div>
+          <div class="imp-row">
+            <label>上传项目文档（支持 TXT / Markdown / Word / PDF）</label>
+            <input id="aiFilesInput" type="file" multiple accept=".txt,.md,.markdown,.json,.csv,.html,.htm,.pdf,.docx,.doc,text/plain,text/markdown,application/json,text/csv,text/html,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/msword" onchange="renderAIFileList(Array.from(this.files||[]))">
+            <div class="ai-files" id="aiFiles"></div>
+          </div>
+          <div class="imp-row">
+            <label>粘贴面试对话</label>
+            <textarea class="imp-input" id="aiDialogue" rows="8" placeholder="例如：\n面试官：你怎么证明这个项目有结果？\n我：我会从..."></textarea>
+          </div>
+          <div class="imp-row">
+            <label>补充说明（可选）</label>
+            <textarea class="imp-input" id="aiNotes" rows="4" placeholder="例如：更关注 AI 产品经理岗位；请保留关键指标和项目归因边界。"></textarea>
+          </div>
+          <div class="ai-actions-split">
+            <button class="btn btn-p ai-cta" id="aiRunBtn" onclick="runAIWorkbench()">开始AI整理</button>
+            <button class="btn btn-s ai-quiet" onclick="clearAIDraft()">清空草稿</button>
+          </div>
+          <div class="ai-status ${aiRunStatus.message?'show':''} ${aiRunStatus.type||''}" id="aiRunStatus">${escapeHtml(aiRunStatus.message||'')}</div>
+        </div>
+      </div>
+
+      <div class="ai-col ai-result-card">
+        <div class="import-area ai-panel">
+          <div class="ai-result-head">
+            <div class="ai-card-title">
+              <h3>第三步：AI 整理结果</h3>
+              <div class="ai-card-sub">右侧会一直保留为结果区，避免你整理完后还要回头找输出位置。</div>
+            </div>
+          </div>
+          <div class="ai-result-panel">
+            <div class="ai-chip-row">
+              <span class="ai-chip"><strong>草稿</strong>${draftCount?`${draftCount} 条`:'暂无'}</span>
+              <span class="ai-chip"><strong>状态</strong>${draftCount?'可导入题库':(connReady?'等待整理':'先连接模型')}</span>
+              ${draft.updatedAt?`<span class="ai-chip"><strong>更新于</strong>${escapeHtml(new Date(draft.updatedAt).toLocaleString())}</span>`:''}
+            </div>
+            ${draft.summary?`<div class="ai-note" style="margin-top:0">${escapeHtml(draft.summary)}</div>`:''}
+            ${draftCount?`<div class="ai-actions-split">
+              <button class="btn btn-p ai-cta" onclick="importAIDraft()">导入到题库</button>
+              <button class="btn btn-s ai-secondary" onclick="curTab='bank';renderNav();renderTab()">去题库查看</button>
+            </div>`:''}
+          </div>
+        </div>
+        <div class="ai-preview-wrap">
+          ${draftCount?`<div class="ai-preview">
+            ${draft.items.map(item=>`
+              <div class="ai-item">
+                <div class="ai-item-h">
+                  <span class="ai-badge">${escapeHtml(item.projectName||'默认分组')}</span>
+                  <span class="ai-badge">${escapeHtml(item.source||'mixed')}</span>
+                  <span class="ai-conf">${item.confidence!=null?`置信度 ${Math.round(item.confidence*100)}%`:'未提供置信度'}</span>
+                </div>
+                <div class="ai-item-q">${escapeHtml(item.question)}</div>
+                <div class="ai-item-a">${escapeHtml(item.answer)}</div>
+                <div class="ai-item-ft">
+                  ${(item.keywords||[]).map(k=>`<span class="kw">${escapeHtml(k)}</span>`).join('')}
+                  <span class="del-link" onclick="removeAIDraftItem('${item.id}')">移除</span>
+                </div>
+              </div>`).join('')}
+          </div>`:`
+            <div class="ai-empty-card">
+              <div class="ai-empty-hero">
+                <div class="ai-empty-ico">🧠</div>
+                <div>
+                  <h4>还没有 AI 草稿</h4>
+                  <p>这块会保留成你的固定输出面板。测试连接成功后，再把材料交给模型即可。</p>
+                </div>
+              </div>
+              <div class="ai-mini-divider"></div>
+              <div class="ai-empty-list">
+                <div class="ai-empty-item"><span>1</span><div>先在上方完成模型连接，确认接口可用。</div></div>
+                <div class="ai-empty-item"><span>2</span><div>再上传项目文档，或粘贴一段面试对话。</div></div>
+                <div class="ai-empty-item"><span>3</span><div>点击“开始AI整理”，草稿会直接出现在这个区域。</div></div>
+              </div>
+            </div>`}
+        </div>
+      </div>
+    </div>
+  </div>`;
+}
+
+const AI_INTERVIEW_FORMATTER_SYSTEM_PROMPT=`你是一个面试准备助手，要把模拟面试对话整理成结构化问答，并严格映射到已有项目。
+
+要求：
+1. 只输出 JSON，不要输出解释、Markdown、代码块围栏。
+2. 每一条 items 都必须映射到一个已有项目的 projectId；如果无法确定，使用 "default"。
+3. 输出适合面试练习的高价值问答，问题要像面试官会问的话，答案要保留关键数据点与推理链。
+4. 去掉明显重复、太泛、太空的话术。
+5. keywords 保持 3 到 6 个短词。
+6. source 输出 "single-model"、"dual-model" 或 "mixed-user" 之一。
+
+返回格式：
+{
+  "summary":"一句话总结本次整理结果",
+  "items":[
+    {
+      "projectId":"已有项目ID",
+      "projectName":"已有项目名",
+      "question":"面试问题",
+      "answer":"参考答案",
+      "keywords":["关键词1","关键词2"],
+      "source":"single-model",
+      "confidence":0.91
+    }
+  ]
+}`;
+
+function getInterviewLab(){
+  state.interviewLab=normalizeInterviewLab(state.interviewLab);
+  return state.interviewLab;
+}
+
+function syncSecondaryLLMConfigFromForm(){
+  const baseEl=document.getElementById('llmBaseUrl2');
+  const keyEl=document.getElementById('llmApiKey2');
+  const modelEl=document.getElementById('llmModel2');
+  if(!baseEl||!keyEl||!modelEl)return state.llmConfigSecondary||normalizeLLMConfig({});
+  state.llmConfigSecondary=normalizeLLMConfig({
+    baseUrl:baseEl.value.trim(),
+    apiKey:keyEl.value.trim(),
+    model:modelEl.value.trim()
+  });
+  save();
+  return state.llmConfigSecondary;
+}
+
+function syncInterviewLabFromForm(){
+  const lab=getInterviewLab();
+  const modeEl=document.getElementById('interviewMode');
+  const projectEl=document.getElementById('interviewProject');
+  const interviewerPromptEl=document.getElementById('interviewerPrompt');
+  const candidatePromptEl=document.getElementById('candidatePrompt');
+  const formatterPromptEl=document.getElementById('formatterPrompt');
+  const mixedAnswerEl=document.getElementById('mixedAnswerInput');
+  const contextEl=document.getElementById('aiContextText');
+  const notesEl=document.getElementById('aiNotes');
+  state.interviewLab=normalizeInterviewLab({
+    ...lab,
+    mode:modeEl?modeEl.value:lab.mode,
+    projectId:projectEl?projectEl.value:lab.projectId,
+    prompts:{
+      interviewer:interviewerPromptEl?interviewerPromptEl.value.trim():lab.prompts.interviewer,
+      candidate:candidatePromptEl?candidatePromptEl.value.trim():lab.prompts.candidate,
+      formatter:formatterPromptEl?formatterPromptEl.value.trim():lab.prompts.formatter
+    },
+    currentUserAnswer:mixedAnswerEl?mixedAnswerEl.value:lab.currentUserAnswer,
+    contextText:contextEl?contextEl.value:lab.contextText,
+    notesText:notesEl?notesEl.value:lab.notesText
+  });
+  save();
+  return state.interviewLab;
+}
+
+function getEffectiveLLMConfig(which='primary'){
+  const primary=syncLLMConfigFromForm();
+  if(which==='primary')return primary;
+  const secondary=syncSecondaryLLMConfigFromForm();
+  return normalizeLLMConfig({
+    baseUrl:secondary.baseUrl || primary.baseUrl,
+    apiKey:secondary.apiKey || primary.apiKey,
+    model:secondary.model || ''
+  });
+}
+
+async function callLLM(messages,configOverride){
+  const cfg=configOverride || syncLLMConfigFromForm();
+  if(!cfg.baseUrl||!cfg.apiKey||!cfg.model)throw new Error('请先填写当前要调用模型的 Base URL、API Key 和 Model');
+  const endpoint=getChatCompletionsEndpoint(cfg.baseUrl);
+  const resp=await fetch(endpoint,{
+    method:'POST',
+    headers:{
+      'Content-Type':'application/json',
+      'Authorization':`Bearer ${cfg.apiKey}`
+    },
+    body:JSON.stringify({
+      model:cfg.model,
+      temperature:0.35,
+      messages
+    })
+  });
+  if(!resp.ok){
+    const text=await resp.text();
+    throw new Error(`模型调用失败（${resp.status}）：${text.slice(0,300)}`);
+  }
+  const data=await resp.json();
+  return extractAssistantText(data);
+}
+
+async function testLLMConnection(which='primary'){
+  try{
+    const label=which==='secondary'?'副模型':'主模型';
+    setAIConnStatus('', `正在测试${label}连接…`);
+    const cfg=getEffectiveLLMConfig(which);
+    if(which==='secondary' && !cfg.model)throw new Error('双模型模式下请先填写副模型的 Model');
+    const text=await callLLM([
+      {role:'system',content:'你是一个接口连通性检查助手。只返回 {"ok":true,"message":"..."} 这样的 JSON。'},
+      {role:'user',content:`请返回一个最小 JSON，确认${label}接口可用。`}
+    ],cfg);
+    const payload=extractJsonPayload(text);
+    setAIConnStatus('ok', `${label}连接成功：${payload.message||'接口可用'}`);
+  }catch(err){
+    setAIConnStatus('err', err.message || '连接测试失败');
+  }
+}
+
+function getInterviewProject(projectId){
+  return state.projects.find(p=>p.id===projectId) || state.projects.find(p=>p.id==='default') || {id:'default',name:'默认分组'};
+}
+
+function buildProjectQuestionReference(projectId){
+  const project=getInterviewProject(projectId);
+  const related=state.questions.filter(q=>q.project===project.id).slice(0,12);
+  if(!related.length)return `当前项目：${project.name}\n目前题库里还没有现成问答，请基于用户材料和项目名主动生成高质量深挖题。`;
+  return [
+    `当前项目：${project.name}`,
+    '已有项目题库参考：',
+    ...related.map((q,idx)=>`${idx+1}. ${q.q}\n答题要点：${q.answer.slice(0,180)}`)
+  ].join('\n');
+}
+
+function buildInterviewTranscript(lab){
+  return (lab.turns||[]).map((turn,idx)=>`Q${idx+1}：${turn.question}\nA${idx+1}：${turn.answer||'（候选人未作答）'}`).join('\n\n');
+}
+
+async function collectInterviewContextBundle(lab){
+  const fileInput=document.getElementById('aiFilesInput');
+  const files=fileInput&&fileInput.files?Array.from(fileInput.files):[];
+  syncInterviewLabFromForm();
+  let bundle={text:lab.cachedSourceText || '', unreadable:lab.cachedUnreadable || [], parseErrors:[]};
+  if(files.length){
+    bundle=await collectAISourceText(files,lab.contextText,lab.notesText);
+    lab.cachedSourceText=bundle.text;
+    lab.cachedUnreadable=bundle.unreadable;
+    lab.sourceFiles=files.map(file=>file.name);
+  }else if(!bundle.text){
+    bundle=await collectAISourceText([],lab.contextText,lab.notesText);
+    lab.cachedSourceText=bundle.text;
+    lab.cachedUnreadable=bundle.unreadable;
+  }
+  save();
+  if(bundle.parseErrors&&bundle.parseErrors.length){
+    setAIRunStatus('err', bundle.parseErrors.join('； '));
+  }
+  return {
+    bundle,
+    projectText:buildProjectQuestionReference(lab.projectId),
+    transcript:buildInterviewTranscript(lab)
+  };
+}
+
+function ensureInterviewLimit(lab){
+  if(lab.askedCount>=lab.maxQuestions){
+    lab.status='complete';
+    lab.complete=true;
+    lab.paused=false;
+    lab.notice='此项目题库已完成，建议先预览保存';
+    save();
+    setAIRunStatus('ok', lab.notice);
+    return true;
+  }
+  return false;
+}
+
+function appendInterviewTurn(question,answer,meta={}){
+  const lab=getInterviewLab();
+  lab.turns.push({
+    id:`turn_${Date.now()}_${Math.random().toString(36).slice(2,7)}`,
+    question:(question||'').trim(),
+    answer:(answer||'').trim(),
+    questionSource:meta.questionSource || 'interviewer',
+    answerSource:meta.answerSource || 'candidate',
+    projectId:meta.projectId || lab.projectId,
+    keywords:Array.isArray(meta.keywords)?meta.keywords.slice(0,6):[],
+    createdAt:new Date().toISOString()
+  });
+  lab.notice='';
+  save();
+}
+
+async function generateSingleTurn(lab,context){
+  const project=getInterviewProject(lab.projectId);
+  const text=await callLLM([
+    {role:'system',content:`${lab.prompts.interviewer}\n\n${lab.prompts.candidate}\n\n你要一次性产出下一组“面试官提问 + 候选人回答”。只输出 JSON：{"question":"","answer":"","keywords":[""],"stop":false,"note":""}`},
+    {role:'user',content:[
+      '模式：单模型问答',
+      `当前项目：${project.name}`,
+      `已完成问题数：${lab.askedCount} / ${lab.maxQuestions}`,
+      `已问问题：\n${lab.turns.map((turn,idx)=>`${idx+1}. ${turn.question}`).join('\n') || '暂无'}`,
+      context.projectText,
+      context.bundle.text?`补充材料：\n${context.bundle.text}`:''
+    ].filter(Boolean).join('\n\n')}
+  ],getEffectiveLLMConfig('primary'));
+  return extractJsonPayload(text);
+}
+
+async function generateInterviewerQuestion(lab,context){
+  const project=getInterviewProject(lab.projectId);
+  const text=await callLLM([
+    {role:'system',content:`${lab.prompts.interviewer}\n\n你负责只生成下一道面试题。只输出 JSON：{"question":"","keywords":[""],"stop":false,"note":""}`},
+    {role:'user',content:[
+      `模式：${lab.mode==='dual'?'双模型：主模型提问':'混合模式：主模型提问，用户回答'}`,
+      `当前项目：${project.name}`,
+      `已完成问题数：${lab.askedCount} / ${lab.maxQuestions}`,
+      `已问问题：\n${lab.turns.map((turn,idx)=>`${idx+1}. ${turn.question}`).join('\n') || '暂无'}`,
+      context.projectText,
+      context.bundle.text?`补充材料：\n${context.bundle.text}`:''
+    ].filter(Boolean).join('\n\n')}
+  ],getEffectiveLLMConfig('primary'));
+  return extractJsonPayload(text);
+}
+
+async function generateCandidateAnswer(lab,question,context){
+  const project=getInterviewProject(lab.projectId);
+  const text=await callLLM([
+    {role:'system',content:`${lab.prompts.candidate}\n\n你负责只回答问题。只输出 JSON：{"answer":"","confidence":0.86}`},
+    {role:'user',content:[
+      `当前项目：${project.name}`,
+      `面试问题：${question}`,
+      context.projectText,
+      context.bundle.text?`补充材料：\n${context.bundle.text}`:'',
+      context.transcript?`已发生的对话：\n${context.transcript}`:''
+    ].filter(Boolean).join('\n\n')}
+  ],getEffectiveLLMConfig('secondary'));
+  return extractJsonPayload(text);
+}
+
+function fallbackDraftFromInterview(lab){
+  const project=getInterviewProject(lab.projectId);
+  const items=(lab.turns||[]).filter(turn=>turn.answer).map((turn,idx)=>normalizeAIItem({
+    projectId:project.id,
+    projectName:project.name,
+    question:turn.question,
+    answer:turn.answer,
+    keywords:(turn.keywords&&turn.keywords.length?turn.keywords:[project.name,'面试项目']).slice(0,6),
+    source:lab.mode==='mixed'?'mixed-user':(lab.mode==='dual'?'dual-model':'single-model'),
+    confidence:null
+  },idx));
+  return normalizeAIDraft({
+    summary:`已从 ${project.name} 的模拟面试中整理出 ${items.length} 条问答`,
+    items,
+    updatedAt:new Date().toISOString(),
+    sourceLabel:'模拟面试'
+  });
+}
+
+function buildInterviewMarkdown(lab,draft){
+  const project=getInterviewProject(lab.projectId);
+  const transcript=buildInterviewTranscript(lab);
+  const blocks=(draft.items||[]).map((item,idx)=>[
+    `## ${idx+1}. ${item.question}`,
+    '',
+    `- 项目：${item.projectName||project.name}`,
+    `- 来源：${item.source||'simulation'}`,
+    item.keywords&&item.keywords.length?`- 关键词：${item.keywords.join(' / ')}`:null,
+    '',
+    item.answer
+  ].filter(Boolean).join('\n')).join('\n\n');
+  return [
+    `# ${project.name} · 模拟面试整理`,
+    '',
+    `- 模式：${lab.mode==='single'?'单模型问答':lab.mode==='dual'?'双模型问答':'混合模式'}`,
+    `- 问题数：${lab.askedCount}`,
+    `- 生成时间：${new Date().toLocaleString()}`,
+    '',
+    '## 对话原文',
+    '',
+    transcript || '暂无对话内容',
+    '',
+    '## 结构化问答',
+    '',
+    blocks || '暂无结构化问答'
+  ].join('\n');
+}
+
+async function previewInterviewDraft(){
+  const lab=syncInterviewLabFromForm();
+  const answered=(lab.turns||[]).filter(turn=>turn.answer);
+  if(!answered.length){
+    setAIRunStatus('err','至少先完成一轮有效问答，再预览整理结果');
+    return;
+  }
+  try{
+    aiBusy=true;
+    setAIRunStatus('', '正在把模拟对话整理成结构化问答…');
+    const context=await collectInterviewContextBundle(lab);
+    const project=getInterviewProject(lab.projectId);
+    let nextDraft=null;
+    try{
+      const text=await callLLM([
+        {role:'system',content:`${lab.prompts.formatter}\n\n${AI_INTERVIEW_FORMATTER_SYSTEM_PROMPT}`},
+        {role:'user',content:[
+          `已有项目：\n${getProjectsPromptText()}`,
+          `当前项目：${project.name}（${project.id}）`,
+          `模拟模式：${lab.mode}`,
+          context.projectText,
+          context.bundle.text?`补充材料：\n${context.bundle.text}`:'',
+          `模拟对话原文：\n${buildInterviewTranscript(lab)}`
+        ].filter(Boolean).join('\n\n')}
+      ],getEffectiveLLMConfig('primary'));
+      const payload=extractJsonPayload(text);
+      const items=(Array.isArray(payload.items)?payload.items:[]).map(normalizeAIItem).filter(item=>item.question&&item.answer);
+      nextDraft=normalizeAIDraft({
+        summary:payload.summary || `已从 ${project.name} 的模拟面试中整理出 ${items.length} 条问答`,
+        items,
+        updatedAt:new Date().toISOString(),
+        sourceLabel:'模拟面试'
+      });
+    }catch(err){
+      nextDraft=fallbackDraftFromInterview(lab);
+    }
+    state.aiDraft=nextDraft;
+    lab.lastPreviewAt=new Date().toISOString();
+    lab.markdown=buildInterviewMarkdown(lab,nextDraft);
+    save();
+    if(curTab==='ai')renderAIWorkbench(document.getElementById('main'));
+    setAIRunStatus('ok', `预览已更新：整理出 ${(nextDraft.items||[]).length} 条结构化问答`);
+  }catch(err){
+    setAIRunStatus('err', err.message || '预览整理失败');
+  }finally{
+    aiBusy=false;
+  }
+}
+
+function downloadInterviewMarkdown(){
+  const lab=getInterviewLab();
+  const draft=state.aiDraft||normalizeAIDraft({});
+  if(!(draft.items||[]).length && !(lab.turns||[]).length){
+    setAIRunStatus('err','当前没有可导出的模拟问答');
+    return;
+  }
+  const markdown=lab.markdown || buildInterviewMarkdown(lab,draft.items&&draft.items.length?draft:fallbackDraftFromInterview(lab));
+  const project=getInterviewProject(lab.projectId);
+  const filename=`${project.name.replace(/[^\w\u4e00-\u9fa5-]+/g,'_')}_模拟面试整理.md`;
+  const blob=new Blob([markdown],{type:'text/markdown;charset=utf-8'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download=filename;
+  a.click();
+  URL.revokeObjectURL(a.href);
+  lab.lastSavedFilename=filename;
+  lab.markdown=markdown;
+  save();
+  setAIRunStatus('ok', `Markdown 已保存：${filename}`);
+}
+
+function resetInterviewSession(clearDraft=true){
+  const base=createDefaultInterviewLab();
+  const lab=getInterviewLab();
+  state.interviewLab=normalizeInterviewLab({
+    ...base,
+    mode:lab.mode,
+    projectId:lab.projectId,
+    prompts:lab.prompts,
+    contextText:lab.contextText,
+    notesText:lab.notesText,
+    cachedSourceText:lab.cachedSourceText,
+    cachedUnreadable:lab.cachedUnreadable,
+    sourceFiles:lab.sourceFiles
+  });
+  if(clearDraft)state.aiDraft=normalizeAIDraft({});
+  if(interviewRecording&&interviewRecordingOn)interviewRecording.stop();
+  interviewRecording=null;
+  interviewRecordingOn=false;
+  save();
+  if(curTab==='ai')renderAIWorkbench(document.getElementById('main'));
+}
+
+async function startInterviewSession(){
+  const lab=syncInterviewLabFromForm();
+  lab.turns=[];
+  lab.askedCount=0;
+  lab.status='running';
+  lab.paused=false;
+  lab.complete=false;
+  lab.currentQuestion='';
+  lab.currentQuestionKeywords=[];
+  lab.currentUserAnswer='';
+  lab.notice='';
+  state.aiDraft=normalizeAIDraft({});
+  save();
+  await continueInterviewSession(true);
+}
+
+function pauseInterviewSession(){
+  const lab=getInterviewLab();
+  if(lab.complete)return;
+  lab.paused=true;
+  lab.status='paused';
+  lab.notice='模拟已暂停，可稍后继续';
+  save();
+  if(curTab==='ai')renderAIWorkbench(document.getElementById('main'));
+  setAIRunStatus('ok','模拟已暂停');
+}
+
+function resumeInterviewSession(){
+  const lab=getInterviewLab();
+  if(lab.complete)return;
+  lab.paused=false;
+  lab.status=lab.currentQuestion&&lab.mode==='mixed'?'await_user_answer':'running';
+  lab.notice='';
+  save();
+  if(curTab==='ai')renderAIWorkbench(document.getElementById('main'));
+  setAIRunStatus('ok','可以继续当前模拟');
+}
+
+async function continueInterviewSession(initialStart=false){
+  if(aiBusy)return;
+  const lab=syncInterviewLabFromForm();
+  if(lab.paused){
+    setAIRunStatus('err','当前模拟已暂停，请先点击继续');
+    return;
+  }
+  if(ensureInterviewLimit(lab)){
+    if(curTab==='ai')renderAIWorkbench(document.getElementById('main'));
+    return;
+  }
+  if(lab.mode==='mixed' && lab.currentQuestion && !lab.currentUserAnswer.trim()){
+    setAIRunStatus('err','请先提交当前问题的回答，再继续下一题');
+    return;
+  }
+  try{
+    aiBusy=true;
+    setAIRunStatus('', initialStart?'正在启动模拟面试…':'正在生成下一题…');
+    const context=await collectInterviewContextBundle(lab);
+    if(lab.mode==='single'){
+      const payload=await generateSingleTurn(lab,context);
+      if(payload.stop){
+        lab.complete=true;
+        lab.status='complete';
+        lab.notice=payload.note || '此项目题库已完成，建议先预览保存';
+        save();
+        setAIRunStatus('ok', lab.notice);
+      }else{
+        lab.askedCount+=1;
+        appendInterviewTurn(payload.question,payload.answer,{
+          questionSource:'single-model',
+          answerSource:'single-model',
+          projectId:lab.projectId,
+          keywords:Array.isArray(payload.keywords)?payload.keywords:[]
+        });
+        if(ensureInterviewLimit(lab))setAIRunStatus('ok', lab.notice || '此项目题库已完成，建议先预览保存');
+        else setAIRunStatus('ok', `已完成第 ${lab.askedCount} 题，继续可生成下一题`);
+      }
+    }else{
+      const questionPayload=await generateInterviewerQuestion(lab,context);
+      if(questionPayload.stop){
+        lab.complete=true;
+        lab.status='complete';
+        lab.notice=questionPayload.note || '此项目题库已完成，建议先预览保存';
+        save();
+        setAIRunStatus('ok', lab.notice);
+      }else if(lab.mode==='dual'){
+        const answerPayload=await generateCandidateAnswer(lab,questionPayload.question,context);
+        lab.askedCount+=1;
+        appendInterviewTurn(questionPayload.question,answerPayload.answer,{
+          questionSource:'primary-model',
+          answerSource:'secondary-model',
+          projectId:lab.projectId,
+          keywords:Array.isArray(questionPayload.keywords)?questionPayload.keywords:[]
+        });
+        if(ensureInterviewLimit(lab))setAIRunStatus('ok', lab.notice || '此项目题库已完成，建议先预览保存');
+        else setAIRunStatus('ok', `双模型已完成第 ${lab.askedCount} 题，继续可生成下一题`);
+      }else{
+        lab.askedCount+=1;
+        lab.currentQuestion=questionPayload.question || '';
+        lab.currentQuestionKeywords=Array.isArray(questionPayload.keywords)?questionPayload.keywords.slice(0,6):[];
+        lab.currentUserAnswer='';
+        lab.status='await_user_answer';
+        lab.notice='请回答当前问题，提交后再继续';
+        save();
+        setAIRunStatus('ok', `已生成第 ${lab.askedCount} 题，请先回答`);
+      }
+    }
+    save();
+    if(curTab==='ai')renderAIWorkbench(document.getElementById('main'));
+  }catch(err){
+    setAIRunStatus('err', err.message || '模拟面试生成失败');
+  }finally{
+    aiBusy=false;
+  }
+}
+
+function saveCurrentMixedAnswerFromForm(){
+  const lab=getInterviewLab();
+  const input=document.getElementById('mixedAnswerInput');
+  if(input){
+    lab.currentUserAnswer=input.value;
+    save();
+  }
+}
+
+async function submitMixedInterviewAnswer(){
+  const lab=syncInterviewLabFromForm();
+  const answer=lab.currentUserAnswer.trim();
+  if(!lab.currentQuestion){
+    setAIRunStatus('err','当前没有待回答的问题');
+    return;
+  }
+  if(!answer){
+    setAIRunStatus('err','请先输入或录入你的回答');
+    return;
+  }
+  appendInterviewTurn(lab.currentQuestion,answer,{
+    questionSource:'primary-model',
+    answerSource:'user',
+    projectId:lab.projectId,
+    keywords:lab.currentQuestionKeywords||[]
+  });
+  lab.currentQuestion='';
+  lab.currentQuestionKeywords=[];
+  lab.currentUserAnswer='';
+  lab.status=ensureInterviewLimit(lab)?'complete':'running';
+  lab.notice=lab.complete?'此项目题库已完成，建议先预览保存':'回答已保存，可继续下一题或先预览';
+  save();
+  if(curTab==='ai')renderAIWorkbench(document.getElementById('main'));
+  setAIRunStatus('ok', lab.notice);
+}
+
+function toggleInterviewRecording(){
+  const input=document.getElementById('mixedAnswerInput');
+  const btn=document.getElementById('mixRecordBtn');
+  if(!input){
+    setAIRunStatus('err','混合模式下才需要录音输入');
+    return;
+  }
+  const SR=window.SpeechRecognition || window.webkitSpeechRecognition;
+  if(!SR){
+    setAIRunStatus('err','当前浏览器不支持语音转文字，请直接输入回答');
+    return;
+  }
+  if(interviewRecordingOn && interviewRecording){
+    interviewRecording.stop();
+    if(btn)btn.textContent='开始录音';
+    return;
+  }
+  const baseText=input.value;
+  let finalText='';
+  interviewRecording=new SR();
+  interviewRecording.lang='zh-CN';
+  interviewRecording.continuous=true;
+  interviewRecording.interimResults=true;
+  interviewRecordingOn=true;
+  interviewRecording.onresult=(event)=>{
+    let interim='';
+    for(let i=event.resultIndex;i<event.results.length;i++){
+      const transcript=event.results[i][0]?.transcript || '';
+      if(event.results[i].isFinal)finalText+=transcript;
+      else interim+=transcript;
+    }
+    input.value=[baseText,finalText,interim].filter(Boolean).join(baseText&&(finalText||interim)?'\n':'');
+    saveCurrentMixedAnswerFromForm();
+  };
+  interviewRecording.onerror=()=>setAIRunStatus('err','录音识别失败，请改用手动输入');
+  interviewRecording.onend=()=>{
+    interviewRecordingOn=false;
+    interviewRecording=null;
+    if(btn)btn.textContent='开始录音';
+    if(curTab==='ai')renderAIWorkbench(document.getElementById('main'));
+  };
+  interviewRecording.start();
+  if(btn)btn.textContent='停止录音';
+  setAIRunStatus('ok','录音已开始，识别文字会自动写入回答框');
+}
+
+function importAIDraft(){
+  const items=state.aiDraft.items||[];
+  if(!items.length){setAIRunStatus('err','当前没有可导入的 AI 草稿');return}
+  if(!confirm(`确认把 ${items.length} 条预览问答映射到题库吗？系统会自动跳过重复题。`))return;
+  let added=0,skipped=0;
+  items.forEach(item=>{
+    const exists=state.questions.some(q=>q.project===item.projectId && q.q.trim()===item.question.trim());
+    if(exists){skipped++;return}
+    state.questions.push(normalizeQuestion({
+      id:Date.now()+Math.random(),
+      project:item.projectId,
+      q:item.question,
+      answer:item.answer,
+      keywords:item.keywords,
+      level:'red',
+      practiced:0,
+      lastPracticed:null,
+      score:0,
+      nextReviewAt:new Date().toISOString(),
+      intervalDays:0,
+      streak:0,
+      lapseCount:0,
+      lastResult:null
+    }));
+    added++;
+  });
+  save();
+  updateHd();
+  setAIRunStatus('ok', `已导入 ${added} 条问答${skipped?`，跳过 ${skipped} 条重复题目`:''}`);
+}
+
+function renderAIWorkbench(m){
+  const cfg=state.llmConfig||{baseUrl:'',apiKey:'',model:''};
+  const cfg2=state.llmConfigSecondary||{baseUrl:'',apiKey:'',model:''};
+  const draft=state.aiDraft||normalizeAIDraft({});
+  const draftCount=(draft.items&&draft.items.length)||0;
+  const lab=getInterviewLab();
+  const project=getInterviewProject(lab.projectId);
+  const hasPrimary=!!(cfg.baseUrl&&cfg.apiKey&&cfg.model);
+  const step1State=aiConnStatus.type==='ok'?'done':(hasPrimary?'active':'');
+  const step2State=(lab.turns||[]).length?'done':(hasPrimary?'active':'');
+  const step3State=draftCount?'done':((lab.turns||[]).length?'active':'');
+  const canContinue=!aiBusy&&!lab.paused&&!lab.complete&&(lab.mode!=='mixed' || !lab.currentQuestion);
+  const canSubmitMixed=lab.mode==='mixed' && !!lab.currentQuestion;
+  m.innerHTML=`
+  <div class="fade ai-stage">
+    <div class="ai-hero">
+      <div class="ai-kicker">AI 模拟工作台</div>
+      <div class="sec-t">🤖 AI工作台</div>
+      <div class="sec-desc">围绕当前面试项目，用单模型、双模型或混合模式完成最多 10 道模拟题。先预览结构化问答，再决定导出 Markdown 或确认入库。</div>
+    </div>
+    <div class="ai-flow">
+      <div class="ai-step ${step1State}">
+        <div class="ai-step-no">1</div>
+        <h4>配置模式与模型</h4>
+        <p>主模型负责提问；双模型模式下，副模型负责回答。混合模式则由你自己作答。</p>
+        <div class="ai-step-tag">${aiConnStatus.type==='ok'?'模型已连通':hasPrimary?'待测试':'待填写'}</div>
+      </div>
+      <div class="ai-step ${step2State}">
+        <div class="ai-step-no">2</div>
+        <h4>模拟面试</h4>
+        <p>围绕当前面试项目连续推进，最多 10 题。可以暂停、继续，也可以在混合模式下自己回答。</p>
+        <div class="ai-step-tag">${lab.complete?'项目题库已完成':lab.currentQuestion?'等待回答':(lab.turns||[]).length?`已完成 ${lab.askedCount} 题`:'待开始'}</div>
+      </div>
+      <div class="ai-step ${step3State}">
+        <div class="ai-step-no">3</div>
+        <h4>预览并沉淀</h4>
+        <p>把模拟对话整理成结构化问答，确认后再导出 Markdown 或导入网页题库。</p>
+        <div class="ai-step-tag">${draftCount?`已预览 ${draftCount} 条`:'等待预览'}</div>
+      </div>
+    </div>
+
+    <div class="import-area ai-config-card ai-panel">
+      <div class="ai-card-head">
+        <div class="ai-card-title">
+          <h3>第一步：模式、项目与模型</h3>
+          <div class="ai-card-sub">你可以让一个模型同时问答，也可以让双模型分工，或者让主模型提问、你自己回答。问题数按项目计数，达到 10 题后会自动提示先预览保存。</div>
+        </div>
+        <div class="ai-chip-row">
+          <span class="ai-chip"><strong>当前项目</strong>${escapeHtml(project.name)}</span>
+          <span class="ai-chip"><strong>模式</strong>${lab.mode==='single'?'单模型':lab.mode==='dual'?'双模型':'混合模式'}</span>
+          <span class="ai-chip"><strong>题目上限</strong>${lab.maxQuestions} 题</span>
+        </div>
+      </div>
+      <div class="imp-row-h">
+        <div class="imp-row">
+          <label>模拟模式</label>
+          <select class="imp-sel" id="interviewMode" onchange="syncInterviewLabFromForm();renderAIWorkbench(document.getElementById('main'))">
+            <option value="single" ${lab.mode==='single'?'selected':''}>单模型模式：同一个模型轮流生成问答</option>
+            <option value="dual" ${lab.mode==='dual'?'selected':''}>双模型模式：主模型提问，副模型回答</option>
+            <option value="mixed" ${lab.mode==='mixed'?'selected':''}>混合模式：主模型提问，我自己回答</option>
+          </select>
+        </div>
+        <div class="imp-row">
+          <label>面试项目</label>
+          <select class="imp-sel" id="interviewProject" onchange="syncInterviewLabFromForm();renderAIWorkbench(document.getElementById('main'))">
+            ${state.projects.map(p=>`<option value="${p.id}" ${lab.projectId===p.id?'selected':''}>${escapeHtml(p.name)}</option>`).join('')}
+          </select>
+        </div>
+      </div>
+      <div class="imp-row-h">
+        <div class="imp-row">
+          <label>主模型 Base URL</label>
+          <input class="imp-input" id="llmBaseUrl" placeholder="如：https://openrouter.ai/api/v1" value="${escapeHtml(cfg.baseUrl||'')}">
+        </div>
+        <div class="imp-row">
+          <label>主模型 API Key</label>
+          <input class="imp-input" id="llmApiKey" type="password" placeholder="输入主模型 API Key" value="${escapeHtml(cfg.apiKey||'')}">
+        </div>
+        <div class="imp-row">
+          <label>主模型 Model</label>
+          <input class="imp-input" id="llmModel" placeholder="如：anthropic/claude-3.5-sonnet" value="${escapeHtml(cfg.model||'')}">
+        </div>
+      </div>
+      <div class="imp-row-h">
+        <div class="imp-row">
+          <label>副模型 Base URL（可留空，默认复用主模型）</label>
+          <input class="imp-input" id="llmBaseUrl2" placeholder="双模型模式可单独填写" value="${escapeHtml(cfg2.baseUrl||'')}">
+        </div>
+        <div class="imp-row">
+          <label>副模型 API Key（可留空，默认复用主模型）</label>
+          <input class="imp-input" id="llmApiKey2" type="password" placeholder="双模型模式可单独填写" value="${escapeHtml(cfg2.apiKey||'')}">
+        </div>
+        <div class="imp-row">
+          <label>副模型 Model（双模型模式必填）</label>
+          <input class="imp-input" id="llmModel2" placeholder="如：openai/gpt-4.1-mini" value="${escapeHtml(cfg2.model||'')}">
+        </div>
+      </div>
+      <div class="imp-row">
+        <label>面试官提示词</label>
+        <textarea class="imp-input" id="interviewerPrompt" rows="4" placeholder="定义面试官的提问风格">${escapeHtml(lab.prompts.interviewer)}</textarea>
+      </div>
+      <div class="imp-row">
+        <label>候选人提示词</label>
+        <textarea class="imp-input" id="candidatePrompt" rows="4" placeholder="定义候选人的回答风格">${escapeHtml(lab.prompts.candidate)}</textarea>
+      </div>
+      <div class="imp-row">
+        <label>整理输出提示词</label>
+        <textarea class="imp-input" id="formatterPrompt" rows="4" placeholder="定义最终问答整理方式">${escapeHtml(lab.prompts.formatter)}</textarea>
+      </div>
+      <div class="ai-actions-split" style="margin-top:12px">
+        <button class="btn btn-s ai-secondary" onclick="syncInterviewLabFromForm();testLLMConnection('primary')">测试主模型</button>
+        <button class="btn btn-s ai-secondary" onclick="syncInterviewLabFromForm();testLLMConnection('secondary')">测试副模型</button>
+        <button class="btn btn-s ai-quiet" onclick="syncLLMConfigFromForm();syncSecondaryLLMConfigFromForm();syncInterviewLabFromForm();setAIConnStatus('ok','模拟配置已保存到本地浏览器')">保存配置</button>
+      </div>
+      <div class="ai-status ${aiConnStatus.message?'show':''} ${aiConnStatus.type||''}" id="aiConnStatus">${escapeHtml(aiConnStatus.message||'')}</div>
+      <div class="ai-note">主模型始终负责提问。双模型模式下，副模型负责回答；混合模式下由你自己回答。配置只保存在当前浏览器本地，适合个人练习使用。</div>
+    </div>
+
+    <div class="ai-shell">
+      <div class="ai-col">
+        <div class="import-area ai-panel">
+          <div class="ai-card-head">
+            <div class="ai-card-title">
+              <h3>第二步：模拟面试</h3>
+              <div class="ai-card-sub">可以上传项目文档作为上下文，再让模型围绕当前项目连续提问。达到 10 题后会自动提醒你先预览保存。</div>
+            </div>
+            <div class="ai-chip-row">
+              <span class="ai-chip"><strong>已完成</strong>${lab.askedCount} / ${lab.maxQuestions}</span>
+              <span class="ai-chip"><strong>状态</strong>${lab.complete?'已完成':lab.paused?'已暂停':lab.currentQuestion?'待回答':lab.turns.length?'进行中':'未开始'}</span>
+            </div>
+          </div>
+          <div class="imp-row">
+            <label>上传项目文档（支持 TXT / Markdown / Word / PDF）</label>
+            <input id="aiFilesInput" type="file" multiple accept=".txt,.md,.markdown,.json,.csv,.html,.htm,.pdf,.docx,.doc,text/plain,text/markdown,application/json,text/csv,text/html,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/msword" onchange="renderAIFileList(Array.from(this.files||[]))">
+            <div class="ai-files" id="aiFiles">${(lab.sourceFiles||[]).map(name=>`<div>${escapeHtml(name)}</div>`).join('')}</div>
+          </div>
+          <div class="imp-row">
+            <label>项目背景 / 参考材料</label>
+            <textarea class="imp-input" id="aiContextText" rows="6" placeholder="把项目背景、难点、关键指标、业务约束等上下文贴在这里，作为本次模拟的补充材料。" oninput="syncInterviewLabFromForm()">${escapeHtml(lab.contextText||'')}</textarea>
+          </div>
+          <div class="imp-row">
+            <label>补充说明（可选）</label>
+            <textarea class="imp-input" id="aiNotes" rows="4" placeholder="例如：更关注 AI 产品经理岗位；希望问题更尖锐；回答保留关键数据和归因边界。" oninput="syncInterviewLabFromForm()">${escapeHtml(lab.notesText||'')}</textarea>
+          </div>
+          <div class="ai-actions-split">
+            <button class="btn btn-p ai-cta" onclick="startInterviewSession()">开始模拟</button>
+            <button class="btn btn-s ai-secondary" ${canContinue?'':'disabled'} onclick="continueInterviewSession(false)">继续下一题</button>
+            <button class="btn btn-s ai-secondary" ${lab.paused||lab.complete?'disabled':''} onclick="pauseInterviewSession()">暂停</button>
+            <button class="btn btn-s ai-secondary" ${lab.paused?'':'disabled'} onclick="resumeInterviewSession()">继续</button>
+            <button class="btn btn-s ai-quiet" onclick="resetInterviewSession(true)">重置本次模拟</button>
+          </div>
+          ${lab.notice?`<div class="ai-note" style="margin-top:12px">${escapeHtml(lab.notice)}</div>`:''}
+          ${canSubmitMixed?`
+            <div class="ai-empty-card" style="margin-top:14px;min-height:0">
+              <div class="ai-empty-hero">
+                <div class="ai-empty-ico">🎤</div>
+                <div>
+                  <h4>当前问题</h4>
+                  <p>混合模式下，主模型负责提问，你来作答。录音识别会自动把文字写入回答框。</p>
+                </div>
+              </div>
+              <div class="ai-item-q" style="margin-bottom:10px">${escapeHtml(lab.currentQuestion)}</div>
+              <div class="ai-item-ft" style="margin-bottom:10px">${(lab.currentQuestionKeywords||[]).map(k=>`<span class="kw">${escapeHtml(k)}</span>`).join('')}</div>
+              <textarea class="imp-input" id="mixedAnswerInput" rows="6" placeholder="在这里输入你的回答，或点击录音按钮后直接口述…" oninput="saveCurrentMixedAnswerFromForm()">${escapeHtml(lab.currentUserAnswer||'')}</textarea>
+              <div class="ai-actions-split" style="margin-top:12px">
+                <button class="btn btn-s ai-secondary" id="mixRecordBtn" onclick="toggleInterviewRecording()">${interviewRecordingOn?'停止录音':'开始录音'}</button>
+                <button class="btn btn-p" onclick="submitMixedInterviewAnswer()">提交我的回答</button>
+              </div>
+            </div>`:''}
+          <div class="ai-status ${aiRunStatus.message?'show':''} ${aiRunStatus.type||''}" id="aiRunStatus">${escapeHtml(aiRunStatus.message||'')}</div>
+          <div class="ai-preview-wrap">
+            ${(lab.turns||[]).length?`<div class="ai-preview">
+              ${lab.turns.map((turn,idx)=>`
+                <div class="ai-item">
+                  <div class="ai-item-h">
+                    <span class="ai-badge">第 ${idx+1} 题</span>
+                    <span class="ai-badge">${turn.answerSource==='user'?'我来回答':turn.answerSource==='secondary-model'?'副模型回答':'单模型回答'}</span>
+                  </div>
+                  <div class="ai-item-q">${escapeHtml(turn.question)}</div>
+                  <div class="ai-item-a">${escapeHtml(turn.answer||'（当前还没有回答）')}</div>
+                  <div class="ai-item-ft">
+                    ${(turn.keywords||[]).map(k=>`<span class="kw">${escapeHtml(k)}</span>`).join('')}
+                  </div>
+                </div>`).join('')}
+            </div>`:`
+              <div class="ai-empty-card">
+                <div class="ai-empty-hero">
+                  <div class="ai-empty-ico">🗣️</div>
+                  <div>
+                    <h4>还没有开始模拟</h4>
+                    <p>选择项目和模式后，点击“开始模拟”，系统会围绕当前面试项目最多推进 10 道问题。</p>
+                  </div>
+                </div>
+                <div class="ai-mini-divider"></div>
+                <div class="ai-empty-list">
+                  <div class="ai-empty-item"><span>1</span><div>单模型：同一模型自动问答。</div></div>
+                  <div class="ai-empty-item"><span>2</span><div>双模型：主模型提问，副模型回答。</div></div>
+                  <div class="ai-empty-item"><span>3</span><div>混合模式：主模型提问，你自己回答，后续再整理成草稿。</div></div>
+                </div>
+              </div>`}
+          </div>
+        </div>
+      </div>
+
+      <div class="ai-col ai-result-card">
+        <div class="import-area ai-panel">
+          <div class="ai-result-head">
+            <div class="ai-card-title">
+              <h3>第三步：预览、导出与确认导入</h3>
+              <div class="ai-card-sub">先把模拟对话整理成结构化问答，再决定是否保存 Markdown 或映射到网页题库。</div>
+            </div>
+          </div>
+          <div class="ai-result-panel">
+            <div class="ai-chip-row">
+              <span class="ai-chip"><strong>结构化问答</strong>${draftCount?`${draftCount} 条`:'暂无'}</span>
+              <span class="ai-chip"><strong>最后预览</strong>${lab.lastPreviewAt?escapeHtml(new Date(lab.lastPreviewAt).toLocaleString()):'未预览'}</span>
+              ${lab.lastSavedFilename?`<span class="ai-chip"><strong>最近保存</strong>${escapeHtml(lab.lastSavedFilename)}</span>`:''}
+            </div>
+            ${draft.summary?`<div class="ai-note" style="margin-top:0">${escapeHtml(draft.summary)}</div>`:''}
+            <div class="ai-actions-split">
+              <button class="btn btn-p ai-cta" onclick="previewInterviewDraft()">预览整理结果</button>
+              <button class="btn btn-s ai-secondary" ${draftCount?'':'disabled'} onclick="downloadInterviewMarkdown()">一键保存 Markdown</button>
+              <button class="btn btn-s ai-secondary" ${draftCount?'':'disabled'} onclick="importAIDraft()">确认导入题库</button>
+              <button class="btn btn-s ai-quiet" onclick="curTab='bank';renderNav();renderTab()">去题库查看</button>
+            </div>
+          </div>
+        </div>
+        <div class="ai-preview-wrap">
+          ${draftCount?`<div class="ai-preview">
+            ${draft.items.map(item=>`
+              <div class="ai-item">
+                <div class="ai-item-h">
+                  <span class="ai-badge">${escapeHtml(item.projectName||'默认分组')}</span>
+                  <span class="ai-badge">${escapeHtml(item.source||'simulation')}</span>
+                  <span class="ai-conf">${item.confidence!=null?`置信度 ${Math.round(item.confidence*100)}%`:'预览稿'}</span>
+                </div>
+                <div class="ai-item-q">${escapeHtml(item.question)}</div>
+                <div class="ai-item-a">${escapeHtml(item.answer)}</div>
+                <div class="ai-item-ft">
+                  ${(item.keywords||[]).map(k=>`<span class="kw">${escapeHtml(k)}</span>`).join('')}
+                  <span class="del-link" onclick="removeAIDraftItem('${item.id}')">移除</span>
+                </div>
+              </div>`).join('')}
+          </div>`:`
+            <div class="ai-empty-card">
+              <div class="ai-empty-hero">
+                <div class="ai-empty-ico">📝</div>
+                <div>
+                  <h4>预览区还没有内容</h4>
+                  <p>先让模拟面试跑起来，等你拿到几轮问答后，再点击“预览整理结果”。</p>
+                </div>
+              </div>
+              <div class="ai-mini-divider"></div>
+              <div class="ai-empty-list">
+                <div class="ai-empty-item"><span>1</span><div>模拟过程中最多推进 10 道项目问题。</div></div>
+                <div class="ai-empty-item"><span>2</span><div>到达上限后会提示“此项目题库已完成，建议先预览保存”。</div></div>
+                <div class="ai-empty-item"><span>3</span><div>预览通过后，再一键保存 Markdown 或确认导入题库。</div></div>
+              </div>
+            </div>`}
+        </div>
+      </div>
+    </div>
+  </div>`;
+}
+
+// ============ BANK ============
+function renderBank(m){
+  const projs=[{id:'all',name:'全部'},...state.projects];
+  m.innerHTML=`<div class="fade">
+    <div class="sec-t">📋 面试问答题库</div>
+    <div class="filters" id="projBar">${projs.map(p=>`<div class="f-chip ${state.projFilter===p.id?'on':''}" onclick="state.projFilter='${p.id}';save();renderBank(document.getElementById('main'))">${p.name}</div>`).join('')}</div>
+    <div class="filters" id="lvBar">
+      ${[['all','全部'],['red','🔴 不熟'],['yellow','🟡 大概'],['green','🟢 熟练']].map(([v,l])=>`<div class="f-chip ${state.filter===v?'on':''}" onclick="state.filter='${v}';save();renderBank(document.getElementById('main'))">${l}</div>`).join('')}
+    </div>
+    <div id="qaList"></div>
+  </div>`;
+  let qs=state.questions;
+  if(state.projFilter!=='all')qs=qs.filter(q=>q.project===state.projFilter);
+  if(state.filter!=='all')qs=qs.filter(q=>q.level===state.filter);
+  const pName=id=>{const p=state.projects.find(x=>x.id===id);return p?p.name:''};
+  document.getElementById('qaList').innerHTML=qs.length?qs.map(q=>`
+    <div class="qa" id="qa-${q.id}">
+      <div class="qa-h" onclick="document.getElementById('qa-${q.id}').classList.toggle('open')">
+        <div class="qa-dot ${q.level}"></div>
+        <div class="qa-q">${q.q}</div>
+        <span class="qa-proj">${pName(q.project)}</span>
+        <span class="qa-arr">▼</span>
+      </div>
+      <div class="qa-b">
+        ${q.keywords.length?`<div class="qa-kw">${q.keywords.map(k=>`<span class="kw">${k}</span>`).join('')}</div>`:''}
+        <div class="qa-ans">${q.answer}</div>
+        <div class="qa-ft">
+          <span class="qa-meta">下次复习：${describeNextReview(q)}</span>
+          <button class="lv-btn ${q.level==='red'?'ar':''}" onclick="setLv(${q.id},'red')">🔴 不熟</button>
+          <button class="lv-btn ${q.level==='yellow'?'ay':''}" onclick="setLv(${q.id},'yellow')">🟡 大概</button>
+          <button class="lv-btn ${q.level==='green'?'ag':''}" onclick="setLv(${q.id},'green')">🟢 熟练</button>
+          <button class="lv-btn" onclick="openEditModal(${q.id})">编辑</button>
+          <span class="del-link" onclick="delQ(${q.id})">删除</span>
+        </div>
+      </div>
+    </div>`).join(''):`<div class="empty"><div class="emo">📝</div><p>${state.questions.length?'没有符合当前筛选条件的题目':'还没有题目，去「导入问答」页面添加吧'}</p></div>`;
+}
+
+function setLv(id,lv){const q=state.questions.find(x=>x.id===id);if(q){setManualSchedule(q,lv);save();renderBank(document.getElementById('main'));updateHd()}}
+function delQ(id){if(!confirm('删除这道题？'))return;state.questions=state.questions.filter(q=>q.id!==id);save();renderBank(document.getElementById('main'));updateHd()}
+
+function escapeHtml(s){
+  return String(s)
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;');
+}
+
+// ============ FLASH ============
+let fcIdx=0,fcQ=[],fcMode='all';
+function getFlashProjectQuestions(){
+  return state.flashProjFilter!=='all'
+    ? state.questions.filter(q=>q.project===state.flashProjFilter)
+    : state.questions;
+}
+function renderFlash(m){
+  const base=getFlashProjectQuestions();
+  const flashProjOptions=[{id:'all',name:'全部'},...state.projects];
+  const filterBar=`<div class="fc-filters">${flashProjOptions.map(p=>`<div class="f-chip ${state.flashProjFilter===p.id?'on':''}" onclick="state.flashProjFilter='${p.id}';save();renderFlash(document.getElementById('main'))">${p.name}</div>`).join('')}</div>`;
+  const due=sortByReviewPriority(base.filter(q=>isDue(q)));
+  fcMode=due.length?'due':'upcoming';
+  fcQ=due.length?due:sortByReviewPriority(base);
+  fcIdx=0;
+  m.innerHTML='<div class="fc-wrap" id="fcWrap"></div>';
+  if(!fcQ.length){document.getElementById('fcWrap').innerHTML=`${filterBar}<div class="empty"><div class="emo">🃏</div><p>${state.questions.length?'当前项目下还没有可练习的题目':'先去「导入问答」添加题目'}</p></div>`;return}
+  renderFc();
+}
+function renderFc(){
+  const w=document.getElementById('fcWrap');
+  const flashProjOptions=[{id:'all',name:'全部'},...state.projects];
+  const selectedProj=state.projects.find(x=>x.id===state.flashProjFilter);
+  const filterBar=`<div class="fc-filters">${flashProjOptions.map(p=>`<div class="f-chip ${state.flashProjFilter===p.id?'on':''}" onclick="state.flashProjFilter='${p.id}';save();renderFlash(document.getElementById('main'))">${p.name}</div>`).join('')}</div>`;
+  if(fcIdx>=fcQ.length){w.innerHTML=`${filterBar}<div class="empty fade"><div class="emo">🎉</div><p>本轮完成！共练习 ${fcQ.length} 题${selectedProj?` · ${selectedProj.name}`:''}</p><button class="btn btn-p" style="margin-top:14px" onclick="renderFlash(document.getElementById('main'))">再来一轮</button></div>`;return}
+  const q=fcQ[fcIdx],p=state.projects.find(x=>x.id===q.project),pct=(fcIdx/fcQ.length*100).toFixed(0);
+  w.innerHTML=`
+    ${filterBar}
+    <div class="fc-note">${selectedProj?`当前项目：${selectedProj.name} · `:''}${fcMode==='due'?'正在优先复习已到期题目':'当前没有到期题，先预习下一批题目'} · ${describeNextReview(q)}</div>
+    <div class="fc-prog"><span>${fcIdx+1} / ${fcQ.length}</span><div class="prog-bar"><div class="prog-fill" style="width:${pct}%"></div></div><span>${pct}%</span></div>
+    <div class="fc fade" id="fc" onclick="document.getElementById('fc').classList.toggle('flip')">
+      <div class="fc-in">
+        <div class="fc-f">
+          ${p?`<div class="fc-proj">${p.name}</div>`:''}
+          <div class="fc-lbl">面试问题</div>
+          <div class="fc-qtxt">${q.q}</div>
+          <div class="fc-hint">先在脑中组织答案，再点击翻转查看 →</div>
+        </div>
+        <div class="fc-bk">
+          <div class="fc-lbl" style="color:var(--green)">参考答案</div>
+          ${q.keywords.length?`<div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:10px">${q.keywords.map(k=>`<span class="kw">${k}</span>`).join('')}</div>`:''}
+          <div class="fc-atxt">${q.answer}</div>
+        </div>
+      </div>
+    </div>
+    <div class="fc-acts">
+      <button class="fc-btn br" onclick="fcRate('red')">😟 不熟<small>稍后再练</small></button>
+      <button class="fc-btn by" onclick="fcRate('yellow')">🤔 大概<small>明天复习</small></button>
+      <button class="fc-btn bg" onclick="fcRate('green')">😎 熟练<small>间隔加长</small></button>
+    </div>`;
+}
+function fcRate(lv){
+  const q=fcQ[fcIdx],o=state.questions.find(x=>x.id===q.id);
+  if(o)scheduleQuestion(o,lv,{source:'flash'});
+  save();updateHd();fcIdx++;renderFc();
+}
+function shuf(a){const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]]}return b}
+
+// ============ VOICE ============
+let vTimer=null,vSec=0,vQ=null,vRun=false;
+function renderVoice(m){
+  const due=sortByReviewPriority(state.questions.filter(q=>isDue(q)&&q.level!=='green'));
+  const pool=due.length?due:sortByReviewPriority(state.questions.filter(q=>q.level!=='green'));
+  const all=pool.length?pool:sortByReviewPriority(state.questions);
+  m.innerHTML='<div class="vc-wrap" id="vcWrap"></div>';
+  if(!all.length){document.getElementById('vcWrap').innerHTML='<div class="empty"><div class="emo">🎙️</div><p>先去添加题目</p></div>';return}
+  const candidatePool=all.slice(0,Math.min(5,all.length));
+  vQ=candidatePool[Math.floor(Math.random()*candidatePool.length)];vSec=0;vRun=false;if(vTimer)clearInterval(vTimer);
+  const p=state.projects.find(x=>x.id===vQ.project);
+  document.getElementById('vcWrap').innerHTML=`
+    <div class="vc-card fade">
+      ${p?`<div class="vc-proj">${p.name}</div>`:''}
+      <div class="vc-qtxt">${vQ.q}</div>
+      <div class="timer" id="tmr">00:00</div>
+      <div class="timer-l">回答计时 · ${describeNextReview(vQ)}</div>
+    </div>
+    <div class="vc-ctrls">
+      <button class="vc-btn" id="tBtn" onclick="togTmr()" title="开始/暂停">▶</button>
+      <button class="vc-btn" onclick="rstTmr()" title="重置">↺</button>
+      <button class="vc-btn" onclick="renderVoice(document.getElementById('main'))" title="下一题">→</button>
+    </div>
+    <div class="sr">
+      <h3>自我评分</h3>
+      <div class="stars">${[1,2,3,4,5].map(n=>`<div class="star" onclick="rateSelf(${n})" id="s${n}">★</div>`).join('')}</div>
+      <button class="rev-btn" onclick="document.getElementById('rAns').classList.toggle('show')">👁 查看参考答案</button>
+      <div class="rev-ans" id="rAns">${vQ.keywords.length?`<div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:8px">${vQ.keywords.map(k=>`<span class="kw">${k}</span>`).join('')}</div>`:''}${vQ.answer}</div>
+    </div>`;
+}
+function togTmr(){const b=document.getElementById('tBtn');if(vRun){clearInterval(vTimer);b.textContent='▶';b.classList.remove('rec');vRun=false}else{b.textContent='⏸';b.classList.add('rec');vRun=true;vTimer=setInterval(()=>{vSec++;document.getElementById('tmr').textContent=String(Math.floor(vSec/60)).padStart(2,'0')+':'+String(vSec%60).padStart(2,'0')},1000)}}
+function rstTmr(){clearInterval(vTimer);vSec=0;vRun=false;document.getElementById('tBtn').textContent='▶';document.getElementById('tBtn').classList.remove('rec');document.getElementById('tmr').textContent='00:00'}
+function rateSelf(n){
+  for(let i=1;i<=5;i++)document.getElementById('s'+i).classList.toggle('on',i<=n);
+  if(vQ){
+    const o=state.questions.find(x=>x.id===vQ.id);
+    if(o){
+      o.score=n;
+      scheduleQuestion(o,n<=2?'red':n<=4?'yellow':'green',{source:'voice',score:n,sec:vSec});
+      save();
+      updateHd();
+    }
+  }
+}
+
+// ============ DAILY ============
+function renderDaily(m){
+  if(!state.questions.length){m.innerHTML='<div class="empty"><div class="emo">📅</div><p>先去添加题目</p></div>';return}
+  const due=sortByReviewPriority(state.questions.filter(q=>isDue(q)));
+  const upcoming=sortByReviewPriority(state.questions.filter(q=>!isDue(q)));
+  const morning=due.filter(q=>q.level!=='green').slice(0,8);
+  const noon=(due.length?due:upcoming).slice(0,3);
+  const today=state.questions.filter(q=>q.lastPracticed&&new Date(q.lastPracticed).toDateString()===new Date().toDateString());
+  const pn=id=>{const p=state.projects.find(x=>x.id===id);return p?p.name:''};
+  m.innerHTML=`<div class="daily fade">
+    <div class="sec-t">📅 今日练习计划</div>
+    <div class="sec-desc">根据题目的到期时间自动生成，优先安排今天该复习的题目。当前待复习 <strong>${due.length}</strong> 题。</div>
+    <div class="tb"><div class="tb-time">早上</div><div class="tb-dot"></div><div class="tb-c">
+      <h4>☀️ 到期闪卡复习 · 15分钟</h4><p>先过今天已经到期的题，优先把记忆快掉的内容捞起来</p>
+      <div class="tl">${morning.length?morning.map(q=>`<div class="ti"><div class="tc" onclick="this.classList.toggle('ck');this.parentElement.classList.toggle('dn')">✓</div><span class="qa-dot ${q.level}" style="width:6px;height:6px"></span><span>${q.q.length>28?q.q.substring(0,28)+'…':q.q}</span><span style="color:var(--ink4)">· ${describeNextReview(q)}</span></div>`).join(''):'<div style="color:var(--ink4);font-size:12px">今天没有待复习题，状态很好 🎉</div>'}</div>
+    </div></div>
+    <div class="tb"><div class="tb-time">中午</div><div class="tb-dot"></div><div class="tb-c">
+      <h4>🎙️ 出声练习 · 10分钟</h4><p>${due.length?'优先拿到期题做口头输出':'当前没有到期题，先预习最近将要复习的题'}</p>
+      <div class="tl">${noon.length?noon.map(q=>`<div class="ti"><div class="tc" onclick="this.classList.toggle('ck');this.parentElement.classList.toggle('dn')">✓</div><span class="qa-dot ${q.level}" style="width:6px;height:6px"></span><span>${q.q.length>28?q.q.substring(0,28)+'…':q.q}</span><span style="color:var(--ink4)">· ${pn(q.project)}</span></div>`).join(''):'<div style="color:var(--ink4);font-size:12px">暂无可安排题目</div>'}</div>
+    </div></div>
+    <div class="tb"><div class="tb-time">晚上</div><div class="tb-dot"></div><div class="tb-c">
+      <h4>🌙 回顾与更新 · 5分钟</h4><p>回顾今天练过的题，看看下一次会在什么时候再次出现</p>
+      <div class="tl">${today.length?today.map(q=>`<div class="ti"><div class="tc" onclick="this.classList.toggle('ck');this.parentElement.classList.toggle('dn')">✓</div><span>${q.q.length>28?q.q.substring(0,28)+'…':q.q} (${q.practiced}次)</span><span style="color:var(--ink4)">· 下次${describeNextReview(q)}</span></div>`).join(''):'<div style="color:var(--ink4);font-size:12px">今天还没练习，快开始吧</div>'}</div>
+    </div></div>
+  </div>`;
+}
+
+// ============ STATS ============
+function renderStats(m){
+  const qs=state.questions,total=qs.length;
+  if(!total){m.innerHTML='<div class="empty"><div class="emo">📊</div><p>添加题目后这里会显示统计数据</p></div>';return}
+  const r=qs.filter(q=>q.level==='red').length,y=qs.filter(q=>q.level==='yellow').length,g=qs.filter(q=>q.level==='green').length;
+  const tp=qs.reduce((a,q)=>a+q.practiced,0);
+  const scored=qs.filter(q=>q.score>0),avg=scored.length?(scored.reduce((a,q)=>a+q.score,0)/scored.length).toFixed(1):'-';
+  const due=qs.filter(q=>isDue(q)).length;
+  const avgInterval=qs.length?(qs.reduce((a,q)=>a+(q.intervalDays||0),0)/qs.length).toFixed(1):'0';
+  const rp=total?(r/total*100).toFixed(0):0,yp=total?(y/total*100).toFixed(0):0,gp=total?(g/total*100).toFixed(0):0;
+  const projStats=state.projects.map(p=>{const pqs=qs.filter(q=>q.project===p.id);const pg=pqs.filter(q=>q.level==='green').length;return{name:p.name,total:pqs.length,green:pg,pct:pqs.length?(pg/pqs.length*100).toFixed(0):0}}).filter(p=>p.total>0);
+
+  m.innerHTML=`<div class="fade">
+    <div class="sec-t">📊 学习统计</div>
+    <div class="st-grid">
+      <div class="st-card"><div class="st-num" style="color:var(--accent)">${total}</div><div class="st-lbl">总题数</div></div>
+      <div class="st-card"><div class="st-num" style="color:var(--red)">${due}</div><div class="st-lbl">待复习</div></div>
+      <div class="st-card"><div class="st-num" style="color:var(--green)">${tp}</div><div class="st-lbl">练习次数</div></div>
+      <div class="st-card"><div class="st-num" style="color:var(--yellow)">${avg}</div><div class="st-lbl">平均评分</div></div>
+      <div class="st-card"><div class="st-num" style="color:var(--blue)">${avgInterval}</div><div class="st-lbl">平均间隔(天)</div></div>
+    </div>
+    <div class="ms-chart"><h3>掌握程度分布</h3>
+      <div class="ms-row"><div class="ms-lbl">🔴 不熟</div><div class="ms-bar"><div class="ms-fill r" style="width:${rp}%">${r}</div></div></div>
+      <div class="ms-row"><div class="ms-lbl">🟡 大概</div><div class="ms-bar"><div class="ms-fill y" style="width:${yp}%">${y}</div></div></div>
+      <div class="ms-row"><div class="ms-lbl">🟢 熟练</div><div class="ms-bar"><div class="ms-fill g" style="width:${gp}%">${g}</div></div></div>
+    </div>
+    <div class="ms-chart"><h3>复习调度状态</h3>
+      <div class="ms-row"><div class="ms-lbl">现在该练</div><div class="ms-bar"><div class="ms-fill r" style="width:${total?(due/total*100).toFixed(0):0}%">${due}</div></div></div>
+      <div class="ms-row"><div class="ms-lbl">已排计划</div><div class="ms-bar"><div class="ms-fill g" style="width:${total?((total-due)/total*100).toFixed(0):0}%">${total-due}</div></div></div>
+    </div>
+    ${projStats.length?`<div class="ms-chart"><h3>各项目掌握率</h3>${projStats.map(s=>`<div class="ms-row"><div class="ms-lbl">${s.name}</div><div class="ms-bar"><div class="ms-fill g" style="width:${s.pct}%">${s.green}/${s.total}</div></div></div>`).join('')}</div>`:''}
+  </div>`;
+}
+
+// ============ INIT ============
+renderNav();renderTab();
+</script>
+</body>
+</html>
